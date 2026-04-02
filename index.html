@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClaraMente — Você ainda lembra da mulher que queria ser?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --creme: #FDFBF7;
+    --dourado: #C5A059;
+    --dourado-escuro: #A6823A;
+    --dourado-claro: #E8D5A3;
+    --navy: #0A1128;
+    --navy-medio: #1A2540;
+    --branco: #FFFFFF;
+    --cinza-suave: #F0EDE6;
+    --cinza-texto: #5A5550;
+    --texto-principal: #1C1814;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--creme);
+    color: var(--texto-principal);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ─── TIPOGRAFIA ─── */
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  /* ─── UTILITÁRIOS ─── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .container-wide {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .divisor {
+    width: 60px;
+    height: 2px;
+    background: var(--dourado);
+    margin: 20px auto;
+  }
+
+  .divisor-left {
+    margin: 20px 0;
+  }
+
+  /* ─── BOTÃO PRINCIPAL ─── */
+  .btn-principal {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--dourado) 0%, #D4A843 50%, var(--dourado) 100%);
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 18px 48px;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba(197, 160, 89, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-principal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-principal:hover::before { left: 100%; }
+
+  .btn-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(197, 160, 89, 0.45);
+  }
+
+  .micro-copy {
+    font-size: 13px;
+    color: var(--cinza-texto);
+    margin-top: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ─── HERO (ACIMA DO VÍDEO) ─── */
+  .hero {
+    background: var(--navy);
+    padding: 72px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(197,160,89,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    margin-bottom: 48px;
+    opacity: 0.85;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 300;
+    color: var(--branco);
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 19px);
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    max-width: 520px;
+    margin: 0 auto 12px;
+  }
+
+  .hero-instrucao {
+    font-size: 13px;
+    color: var(--dourado-claro);
+    letter-spacing: 0.06em;
+    margin-top: 16px;
+    opacity: 0.75;
+  }
+
+  /* ─── PLAYER PLACEHOLDER ─── */
+  .player-wrapper {
+    background: var(--navy);
+    padding: 0 24px 64px;
+  }
+
+  .player-container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .player-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0D1830;
+    border: 1px solid rgba(197,160,89,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .player-placeholder-texto {
+    text-align: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ─── SEÇÃO 1: CTA PRIMÁRIO ─── */
+  .secao-cta-primario {
+    background: var(--navy);
+    padding: 0 24px 72px;
+    text-align: center;
+  }
+
+  .cta-intro-text {
+    font-size: clamp(17px, 2.5vw, 20px);
+    color: rgba(255,255,255,0.75);
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
+
+  .cta-intro-pergunta {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-style: italic;
+    color: var(--branco);
+    margin-bottom: 36px;
+  }
+
+  .secao-cta-primario .micro-copy {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ─── SEÇÃO 2: O QUE ESTÁ INCLUÍDO ─── */
+  .secao-incluido {
+    padding: 88px 24px;
+    background: var(--creme);
+  }
+
+  .secao-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 400;
+    text-align: center;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .secao-subtitulo {
+    text-align: center;
+    color: var(--cinza-texto);
+    font-size: 16px;
+    max-width: 580px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+
+  .grid-ferramentas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 20px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .card-ferramenta {
+    background: var(--branco);
+    border: 1px solid rgba(197,160,89,0.2);
+    border-radius: 3px;
+    padding: 28px 28px 24px;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card-ferramenta:hover {
+    box-shadow: 0 8px 32px rgba(197,160,89,0.12);
+  }
+
+  .card-emoji {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .card-descricao {
+    font-size: 14.5px;
+    color: var(--cinza-texto);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+
+  .card-valor {
+    font-size: 13px;
+    color: var(--dourado);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: line-through;
+    opacity: 0.8;
+  }
+
+  /* ─── SEÇÃO 3: MAPA DOS 7 DIAS ─── */
+  .secao-mapa {
+    background: var(--navy);
+    padding: 88px 24px;
+  }
+
+  .secao-mapa .secao-titulo {
+    color: var(--branco);
+  }
+
+  .secao-mapa .secao-subtitulo {
+    color: rgba(255,255,255,0.55);
+  }
+
+  .grid-dias {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .dia-item {
+    display: flex;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(197,160,89,0.12);
+    align-items: flex-start;
+  }
+
+  .dia-item:last-child { border-bottom: none; }
+
+  .dia-numero {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(197,160,89,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--dourado);
+    font-weight: 500;
+  }
+
+  .dia-conteudo {}
+
+  .dia-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--branco);
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+
+  .dia-descricao {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+  }
+
+  .mapa-fechamento {
+    text-align: center;
+    margin-top: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mapa-fechamento strong {
+    color: var(--dourado);
+    font-style: normal;
+  }
+
+  /* ─── SEÇÃO 4: MOCKUPS ─── */
+  .secao-mockups {
+    padding: 88px 24px;
+    background: var(--creme);
+  }
+
+  .bloco-mockup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 820px;
+    margin: 0 auto 72px;
+  }
+
+  .bloco-mockup:last-child { margin-bottom: 0; }
+
+  .bloco-mockup.invertido { direction: rtl; }
+  .bloco-mockup.invertido > * { direction: ltr; }
+
+  .mockup-placeholder {
+    background: var(--navy-medio);
+    aspect-ratio: 9/16;
+    max-height: 380px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(197,160,89,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mockup-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(197,160,89,0.05) 0%, transparent 60%);
+  }
+
+  .mockup-placeholder-texto {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 20px;
+  }
+
+  .mockup-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    color: var(--navy);
+    margin-bottom: 14px;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .mockup-texto {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    line-height: 1.75;
+  }
+
+  /* ─── SEÇÃO 5: PARA QUEM É / NÃO É ─── */
+  .secao-para-quem {
+    background: var(--cinza-suave);
+    padding: 88px 24px;
+  }
+
+  .grid-para-quem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    max-width: 820px;
+    margin: 48px auto 0;
+  }
+
+  .card-para-quem {
+    background: var(--branco);
+    border-radius: 3px;
+    padding: 36px 32px;
+    border-top: 3px solid transparent;
+  }
+
+  .card-para-quem.sim { border-top-color: var(--dourado); }
+  .card-para-quem.nao { border-top-color: #D4956A; }
+
+  .card-para-quem h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .lista-para-quem {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .lista-para-quem li {
+    font-size: 14.5px;
+    color: var(--cinza-texto);
+    line-height: 1.6;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .lista-para-quem li::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 14px;
+  }
+
+  .card-para-quem.sim .lista-para-quem li::before { content: '✅'; }
+  .card-para-quem.nao .lista-para-quem li::before { content: '❌'; }
+
+  .para-quem-fechamento {
+    text-align: center;
+    margin-top: 36px;
+    font-size: 15px;
+    color: var(--cinza-texto);
+    font-style: italic;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  /* ─── SEÇÃO 6: DEPOIMENTOS ─── */
+  .secao-depoimentos {
+    background: var(--navy);
+    padding: 88px 24px;
+  }
+
+  .secao-depoimentos .secao-titulo { color: var(--branco); }
+  .secao-depoimentos .secao-subtitulo { color: rgba(255,255,255,0.45); }
+
+  .grid-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .card-depoimento {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(197,160,89,0.15);
+    border-radius: 3px;
+    padding: 28px;
+  }
+
+  .estrelas {
+    color: var(--dourado);
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .depoimento-texto {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .depoimento-autor {
+    font-size: 13px;
+    color: var(--dourado);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── SEÇÃO 7: STACK + PREÇO ─── */
+  .secao-preco {
+    background: var(--creme);
+    padding: 88px 24px;
+    text-align: center;
+  }
+
+  .stack-lista {
+    list-style: none;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    text-align: left;
+  }
+
+  .stack-lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(197,160,89,0.15);
+    font-size: 15px;
+    color: var(--texto-principal);
+  }
+
+  .stack-lista li:last-child { border-bottom: none; }
+
+  .stack-nome {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .stack-nome span:first-child { font-size: 18px; }
+
+  .stack-valor-riscado {
+    color: var(--cinza-texto);
+    text-decoration: line-through;
+    font-size: 14px;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  .total-riscado {
+    max-width: 480px;
+    margin: 0 auto 8px;
+    text-align: right;
+    font-size: 14px;
+    color: var(--cinza-texto);
+    padding-top: 8px;
+  }
+
+  .total-riscado span {
+    text-decoration: line-through;
+    font-weight: 500;
+  }
+
+  .preco-destaque {
+    max-width: 480px;
+    margin: 36px auto 0;
+    background: var(--navy);
+    border-radius: 3px;
+    padding: 40px 36px;
+    text-align: center;
+  }
+
+  .preco-por {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .preco-valor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    color: var(--dourado);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .preco-parcelamento {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 32px;
+  }
+
+  .preco-ancoragem {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  /* ─── SEÇÃO 8: GARANTIA ─── */
+  .secao-garantia {
+    background: var(--cinza-suave);
+    padding: 88px 24px;
+  }
+
+  .garantia-box {
+    max-width: 620px;
+    margin: 0 auto;
+    background: var(--branco);
+    border: 1px solid rgba(197,160,89,0.25);
+    border-radius: 3px;
+    padding: 48px 48px 44px;
+    text-align: center;
+  }
+
+  .garantia-icone {
+    font-size: 52px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .garantia-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    color: var(--navy);
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+
+  .garantia-texto {
+    font-size: 15px;
+    color: var(--cinza-texto);
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .garantia-destaque {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--navy);
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  /* ─── SEÇÃO 9: FAQ ─── */
+  .secao-faq {
+    background: var(--navy);
+    padding: 88px 24px;
+  }
+
+  .secao-faq .secao-titulo { color: var(--branco); }
+
+  .faq-lista {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgba(197,160,89,0.12);
+    padding: 0;
+  }
+
+  .faq-pergunta {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    text-align: left;
+    gap: 16px;
+  }
+
+  .faq-pergunta-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    color: var(--branco);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .faq-icone {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(197,160,89,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dourado);
+    font-size: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.aberto .faq-icone {
+    transform: rotate(45deg);
+  }
+
+  .faq-resposta {
+    display: none;
+    padding: 0 0 24px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.75;
+  }
+
+  .faq-item.aberto .faq-resposta {
+    display: block;
+  }
+
+  /* ─── SEÇÃO 10: CTA FINAL ─── */
+  .secao-cta-final {
+    background: var(--creme);
+    padding: 100px 24px;
+    text-align: center;
+  }
+
+  .cta-final-pre {
+    font-size: 13px;
+    color: var(--dourado);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .cta-final-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 6vw, 52px);
+    color: var(--navy);
+    font-weight: 300;
+    max-width: 640px;
+    margin: 0 auto 24px;
+    line-height: 1.2;
+  }
+
+  .cta-final-texto {
+    font-size: 16px;
+    color: var(--cinza-texto);
+    max-width: 520px;
+    margin: 0 auto 16px;
+    line-height: 1.75;
+  }
+
+  .cta-final-pergunta {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-style: italic;
+    color: var(--navy);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.4;
+  }
+
+  .cta-final-fechamento {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--cinza-texto);
+    font-style: italic;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--navy);
+    padding: 40px 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dourado);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+
+  .footer-texto {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    line-height: 1.7;
+  }
+
+  .footer-links {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--dourado); }
+
+  /* ─── ANIMAÇÕES ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+
+  .hero-sub {
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.25s;
+    opacity: 0;
+  }
+
+  .hero-instrucao {
+    animation: fadeUp 0.9s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+  }
+
+  /* ─── RESPONSIVO ─── */
+  @media (max-width: 640px) {
+    .grid-ferramentas {
+      grid-template-columns: 1fr;
+    }
+
+    .grid-para-quem {
+      grid-template-columns: 1fr;
+    }
+
+    .bloco-mockup {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .bloco-mockup.invertido { direction: ltr; }
+
+    .mockup-placeholder {
+      max-height: 240px;
+    }
+
+    .garantia-box {
+      padding: 32px 24px;
+    }
+
+    .grid-depoimentos {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HERO — ACIMA DO VÍDEO
+═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-logo">ClaraMente</div>
+    <h1>Você ainda lembra<br>da mulher que queria ser?</h1>
+    <p class="hero-sub">Provavelmente sim. E o vídeo abaixo explica por que ela nunca chegou.</p>
+    <p class="hero-instrucao">Assista ao vídeo completo para entender o que realmente está acontecendo.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PLAYER DE VÍDEO
+═══════════════════════════════════════════ -->
+<section class="player-wrapper">
+  <div class="player-container">
+    <div class="player-placeholder">
+      <!-- SUBSTITUA ESTE BLOCO PELO EMBED DO SEU PLAYER -->
+      <div class="player-placeholder-texto">
+        [ Insira aqui o player da VSL ]<br><br>
+        Substitua esta div pelo código de embed do vídeo
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 1 — CTA PRIMÁRIO
+═══════════════════════════════════════════ -->
+<section class="secao-cta-primario">
+  <div class="container">
+    <p class="cta-intro-text">Se você chegou até aqui, você já sabe o que está acontecendo.</p>
+    <p class="cta-intro-pergunta">A única pergunta agora é: você vai fazer algo a respeito?</p>
+    <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
+    <p class="micro-copy">🔒 Pagamento único de R$97 · Acesso imediato · Garantia de 7 dias</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 2 — O QUE ESTÁ INCLUÍDO
+═══════════════════════════════════════════ -->
+<section class="secao-incluido">
+  <div class="container">
+    <h2 class="secao-titulo">O que você vai encontrar<br>dentro do ClaraMente</h2>
+    <div class="divisor"></div>
+    <p class="secao-subtitulo">Não é um curso. Não tem aula pra assistir nem tarefa pra entregar. É uma caixa de ferramentas que funciona no momento em que a pressão chega, não depois.</p>
+
+    <div class="grid-ferramentas">
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">📖</span>
+        <div class="card-titulo">Pare de Ser Explorada — Sem Perder Quem Você Ama</div>
+        <p class="card-descricao">7 capítulos. Um por dia. Cada capítulo explica o que está acontecendo naquele dia da sua jornada, em linguagem simples, sem termos técnicos.</p>
+        <div class="card-valor">Valor individual: R$67</div>
+      </div>
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">🗺️</span>
+        <div class="card-titulo">Mapa dos 7 Dias — Método C.L.A.R.A.</div>
+        <p class="card-descricao">Um plano claro do que fazer em cada dia. Sem dúvida de por onde começar. Cinco minutos no ônibus ou dez minutos antes de dormir já são suficientes.</p>
+        <div class="card-valor">Valor individual: R$47</div>
+      </div>
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">✅</span>
+        <div class="card-titulo">10 Checklists — Respostas na Hora Certa</div>
+        <p class="card-descricao">Quando você não sabe se está exagerando, se está sendo manipulada, se deve voltar atrás, você abre um checklist. 12 perguntas. Resposta personalizada pro seu score. Sem precisar de ninguém pra te dizer o que é real.</p>
+        <div class="card-valor">Valor individual: R$37</div>
+      </div>
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">💬</span>
+        <div class="card-titulo">Scripts Prontos — O Que Falar Quando a Cabeça Esvazia</div>
+        <p class="card-descricao">As palavras exatas pra momentos em que você sabe o que sente mas não sabe como dizer. Você não precisa criar do zero na hora mais difícil.</p>
+        <div class="card-valor">Valor individual: R$47</div>
+      </div>
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">🎧</span>
+        <div class="card-titulo">Áudios Guiados — Clareza em Minutos</div>
+        <p class="card-descricao">Pra ouvir antes de uma conversa difícil, depois de um momento que saiu errado, ou quando você só precisa de uma âncora. Curtos. Diretos. Funcionam no celular.</p>
+        <div class="card-valor">Valor individual: R$57</div>
+      </div>
+
+      <div class="card-ferramenta">
+        <span class="card-emoji">🤖</span>
+        <div class="card-titulo">Aurora — Inteligência Artificial Disponível 24h</div>
+        <p class="card-descricao">Uma conversa privada, disponível a qualquer hora. Só você tem acesso ao que conversa com ela. Ninguém mais vê. Ninguém mais sabe. Ela não dá ordens nem diagnósticos. Ela te ajuda a pensar com clareza quando você mais precisa.</p>
+        <div class="card-valor">Valor individual: R$197</div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; margin-top: 40px; font-size: 15px; color: var(--cinza-texto); font-style: italic;">Tudo isso em um único lugar. No seu celular. Disponível agora.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 3 — MAPA DOS 7 DIAS
+═══════════════════════════════════════════ -->
+<section class="secao-mapa">
+  <div class="container">
+    <h2 class="secao-titulo">Como os 7 dias funcionam na prática</h2>
+    <div class="divisor"></div>
+    <p class="secao-subtitulo">Cada dia tem um foco. Cada foco tem uma ferramenta. Você nunca vai abrir o app sem saber o que fazer.</p>
+
+    <div class="grid-dias">
+
+      <div class="dia-item">
+        <div class="dia-numero">1</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">C de Clareza</div>
+          <p class="dia-descricao">Você entende o que está acontecendo. Não como achismo. Como mecanismo. O livro explica o ciclo. O checklist confirma se ele está presente na sua vida. Você sai do Dia 1 com uma resposta que provavelmente buscou por anos.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">2</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">L de Leitura</div>
+          <p class="dia-descricao">Você aprende a ler os sinais antes de a situação escalar. Os infográficos mostram os padrões que você provavelmente já viveu mas não sabia nomear.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">3</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">A de Ação</div>
+          <p class="dia-descricao">O primeiro movimento real. Os scripts te dão as palavras. Os áudios te preparam antes. Você não precisa improvisar.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">4</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">R de Resistência</div>
+          <p class="dia-descricao">O momento mais difícil. Quando você coloca um limite e a pressão começa. Esse dia existe exatamente pra isso. Você vai saber o que fazer quando a cabeça esvaziar.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">5</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">A de Autonomia</div>
+          <p class="dia-descricao">Você começa a tomar decisões pelo que quer, não pelo que é permitido querer. A Aurora está disponível se você precisar pensar em voz alta.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">6</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">Consolidação</div>
+          <p class="dia-descricao">O que mudou. O que ainda resiste. Onde aplicar o que você aprendeu nas situações concretas da sua vida.</p>
+        </div>
+      </div>
+
+      <div class="dia-item">
+        <div class="dia-numero">7</div>
+        <div class="dia-conteudo">
+          <div class="dia-titulo">Modo Manutenção</div>
+          <p class="dia-descricao">O método não acaba no Dia 7. Ele vira rotina. Você sabe quais ferramentas usar em cada tipo de situação. O app continua disponível pra quando precisar.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="mapa-fechamento"><strong>Sete dias</strong> pra entender o que está acontecendo. Uma vida pra usar o que você aprendeu.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 4 — MOCKUPS DO APP
+═══════════════════════════════════════════ -->
+<section class="secao-mockups">
+  <div class="container-wide">
+
+    <div class="bloco-mockup">
+      <div class="mockup-placeholder">
+        <!-- SUBSTITUA PELO MOCKUP PRINCIPAL_1 -->
+        <div class="mockup-placeholder-texto">Mockup Principal 1<br>(tela home)</div>
+      </div>
+      <div>
+        <h3 class="mockup-titulo">Tudo em um lugar.<br>Acessível em segundos.</h3>
+        <div class="divisor divisor-left"></div>
+        <p class="mockup-texto">Quando a situação chega, você não tem tempo pra procurar o que fazer. A tela inicial do ClaraMente foi pensada pra isso. Um toque e você está dentro. O que você precisa está a dois cliques de distância.</p>
+      </div>
+    </div>
+
+    <div class="bloco-mockup invertido">
+      <div class="mockup-placeholder">
+        <!-- SUBSTITUA PELO MOCKUP AURORA_IA -->
+        <div class="mockup-placeholder-texto">Mockup Aurora IA<br>(conversa)</div>
+      </div>
+      <div>
+        <h3 class="mockup-titulo">Uma conversa<br>que só você vê.</h3>
+        <div class="divisor divisor-left"></div>
+        <p class="mockup-texto">A Aurora não julga. Não dá sermão. Não te diz o que fazer. Ela te faz as perguntas certas pra você mesma chegar na resposta. Disponível às 2 da manhã. Disponível antes de uma conversa difícil. Disponível quando você não tem ninguém com quem falar sem ter que explicar tudo do começo.<br><br>E o que você conversa com ela? Só você sabe. Ninguém mais tem acesso. Ninguém mais vê.</p>
+      </div>
+    </div>
+
+    <div class="bloco-mockup">
+      <div class="mockup-placeholder">
+        <!-- SUBSTITUA PELO MOCKUP AUDIOS -->
+        <div class="mockup-placeholder-texto">Mockup Áudios<br>(player)</div>
+      </div>
+      <div>
+        <h3 class="mockup-titulo">Seis minutos antes de entrar numa conversa difícil.</h3>
+        <div class="divisor divisor-left"></div>
+        <p class="mockup-texto">Os áudios foram feitos pra momentos específicos. Antes de falar algo importante. Depois de um momento que saiu errado. Quando você precisa de clareza rápida e não tem tempo pra ler. Você coloca o fone, ouve, e entra na situação sabendo onde está pisando.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 5 — PARA QUEM É / NÃO É
+═══════════════════════════════════════════ -->
+<section class="secao-para-quem">
+  <div class="container">
+    <h2 class="secao-titulo">O ClaraMente é pra você?</h2>
+    <div class="divisor"></div>
+
+    <div class="grid-para-quem">
+
+      <div class="card-para-quem sim">
+        <h3>Para quem é ✅</h3>
+        <ul class="lista-para-quem">
+          <li>Você tem planos que ficam adiados por causa da reação de alguém próximo</li>
+          <li>Você coloca um limite e volta atrás nas primeiras horas</li>
+          <li>Você sai de conversas difíceis sem entender direito o que aconteceu</li>
+          <li>Você reconhece que a vida que construiu parece mais com o que os outros esperavam do que com o que você queria</li>
+          <li>Você já buscou respostas sozinha, em silêncio, porque não consegue falar sobre isso com ninguém próximo</li>
+          <li>Você não quer destruir nenhuma relação. Você só quer parar de se perder dentro delas.</li>
+        </ul>
+      </div>
+
+      <div class="card-para-quem nao">
+        <h3>Para quem não é ❌</h3>
+        <ul class="lista-para-quem">
+          <li>Você está em uma situação de violência física</li>
+          <li>Você está buscando um diagnóstico ou acompanhamento clínico</li>
+          <li>Você quer uma solução que funcione sem nenhum envolvimento da sua parte</li>
+          <li>Você acredita que o problema está 100% na outra pessoa e nada precisa mudar em você</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p class="para-quem-fechamento">Se você se reconheceu no primeiro card, o ClaraMente foi feito pra você.<br>Se você se reconheceu no segundo, eu prefiro ser honesta agora do que te ver frustrada depois.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 6 — DEPOIMENTOS
+═══════════════════════════════════════════ -->
+<section class="secao-depoimentos">
+  <div class="container-wide">
+    <h2 class="secao-titulo" style="text-align:center;">O que outras mulheres encontraram aqui</h2>
+    <div class="divisor"></div>
+    <p class="secao-subtitulo" style="text-align:center; margin-bottom:48px;">Histórias reais de quem já passou por isso.</p>
+
+    <div class="grid-depoimentos">
+
+      <div class="card-depoimento">
+        <div class="estrelas">★★★★★</div>
+        <p class="depoimento-texto">"Eu passei 44 anos achando que eu era sensível demais. Que eu exagerava. Que o problema era meu temperamento. Quando eu vi o resultado do checklist eu fiquei parada olhando pra tela por uns dois minutos. Não era temperamento. Era um padrão. E eu nunca tinha conseguido ver isso porque estava dentro dele."</p>
+        <div class="depoimento-autor">Fernanda, 44 anos</div>
+      </div>
+
+      <div class="card-depoimento">
+        <div class="estrelas">★★★★★</div>
+        <p class="depoimento-texto">"Eu comprei achando que ia ser mais uma coisa que eu começaria e não terminaria. No segundo dia eu parei no meio de um capítulo e fui chorar no banheiro. Não de tristeza. De alívio. Porque alguém finalmente descreveu exatamente o que eu vivo, com as palavras exatas, sem me chamar de vítima e sem me mandar embora da relação."</p>
+        <div class="depoimento-autor">Myrella, 27 anos</div>
+      </div>
+
+      <div class="card-depoimento">
+        <div class="estrelas">★★★★★</div>
+        <p class="depoimento-texto">"O que me pegou foi a Aurora. Eram quase meia-noite, eu tinha acabado de ter uma discussão, e eu não queria acordar ninguém. Eu abri e comecei a digitar. Ela me fez três perguntas. Três. E eu entendi o que tinha acontecido antes de terminar de responder a terceira. Nunca tinha conseguido fazer isso sozinha tão rápido."</p>
+        <div class="depoimento-autor">Camila, 38 anos</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 7 — STACK DE VALOR + PREÇO
+═══════════════════════════════════════════ -->
+<section class="secao-preco">
+  <div class="container">
+    <h2 class="secao-titulo">Tudo isso por quanto?</h2>
+    <div class="divisor"></div>
+
+    <ul class="stack-lista">
+      <li>
+        <div class="stack-nome"><span>📖</span><span>Livro "Pare de Ser Explorada"</span></div>
+        <span class="stack-valor-riscado">R$67</span>
+      </li>
+      <li>
+        <div class="stack-nome"><span>🗺️</span><span>Mapa dos 7 Dias — Método C.L.A.R.A.</span></div>
+        <span class="stack-valor-riscado">R$47</span>
+      </li>
+      <li>
+        <div class="stack-nome"><span>✅</span><span>10 Checklists Interativos</span></div>
+        <span class="stack-valor-riscado">R$37</span>
+      </li>
+      <li>
+        <div class="stack-nome"><span>💬</span><span>Scripts de Conversa</span></div>
+        <span class="stack-valor-riscado">R$47</span>
+      </li>
+      <li>
+        <div class="stack-nome"><span>🎧</span><span>Áudios Guiados</span></div>
+        <span class="stack-valor-riscado">R$57</span>
+      </li>
+      <li>
+        <div class="stack-nome"><span>🤖</span><span>Aurora IA — Disponível 24h</span></div>
+        <span class="stack-valor-riscado">R$197</span>
+      </li>
+    </ul>
+
+    <p class="total-riscado">Valor total se fosse comprar separado: <span>R$452</span></p>
+
+    <div class="preco-destaque">
+      <p class="preco-por">Tudo isso por apenas</p>
+      <div class="preco-valor">R$97</div>
+      <p class="preco-parcelamento">ou 12x de R$10,03</p>
+      <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
+      <p class="micro-copy" style="color: rgba(255,255,255,0.35);">🔒 Pagamento seguro · Acesso imediato · Garantia incondicional de 7 dias</p>
+      <p class="preco-ancoragem">Pagamento único. Sem mensalidade. Sem renovação automática. Acesso vitalício.<br><br>R$97 é menos do que uma única sessão de terapia. E o ClaraMente está disponível nos momentos em que a terapia não está, que são justamente os momentos em que você mais precisa de clareza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 8 — GARANTIA
+═══════════════════════════════════════════ -->
+<section class="secao-garantia">
+  <div class="container">
+    <div class="garantia-box">
+      <span class="garantia-icone">🛡️</span>
+      <h2 class="garantia-titulo">Garantia incondicional de 7 dias</h2>
+      <p class="garantia-texto">Você tem 7 dias pra acessar tudo, usar as ferramentas, conversar com a Aurora, ouvir os áudios, ler o livro.</p>
+      <p class="garantia-texto">Se em qualquer momento dentro desses 7 dias você sentir que não era o que precisava, por qualquer motivo, eu devolvo tudo. Sem perguntas. Sem burocracia. Sem precisar explicar nada.</p>
+      <p class="garantia-texto" style="font-weight: 500; color: var(--navy);">O risco é meu. Não seu.</p>
+      <p class="garantia-texto">Você não está apostando R$97. Você está testando por 7 dias com a certeza de que, se não funcionar, o dinheiro volta.</p>
+      <p class="garantia-destaque">O único risco real aqui é continuar sem isso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 9 — FAQ
+═══════════════════════════════════════════ -->
+<section class="secao-faq">
+  <div class="container">
+    <h2 class="secao-titulo" style="text-align:center; margin-bottom: 16px;">Perguntas frequentes</h2>
+    <div class="divisor"></div>
+    <br>
+
+    <div class="faq-lista">
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">Funciona no iPhone e no Android?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Sim. O ClaraMente é um app que funciona direto no navegador do seu celular, sem precisar baixar nada. iPhone, Android, qualquer modelo. Você acessa pelo link, salva na tela inicial, e ele fica lá como qualquer app normal.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">Preciso ter conhecimento em psicologia ou autoajuda pra usar?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Não. O ClaraMente foi feito pra funcionar sem nenhum conhecimento prévio. A linguagem é simples. As ferramentas são diretas. Se você sabe o que está sentindo mas não sabe o que fazer com isso, o app foi feito exatamente pra você.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">Quanto tempo por dia eu preciso dedicar?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Depende do dia e da ferramenta. O livro tem capítulos curtos, feitos pra ler em cinco a dez minutos. Os áudios têm em média seis minutos. Os checklists levam menos de dois minutos. Você não precisa de uma tarde livre. Precisa de uma pausa.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">As conversas com a Aurora são privadas?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Sim. Só você tem acesso ao que conversa com ela. Nenhuma outra pessoa vê. Nenhuma outra pessoa sabe. Isso foi uma decisão intencional no desenvolvimento do app, porque eu sei que muitas mulheres que precisam disso estão em situações onde privacidade não é detalhe. É condição.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">O acesso expira?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Não. O pagamento é único e o acesso é vitalício. Você paga uma vez e o ClaraMente fica disponível pra você pelo tempo que precisar. Sem mensalidade. Sem renovação.</p>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-pergunta" onclick="toggleFaq(this)">
+          <span class="faq-pergunta-texto">Como funciona a garantia?</span>
+          <span class="faq-icone">+</span>
+        </button>
+        <p class="faq-resposta">Você tem 7 dias de garantia incondicional. Se dentro desse período você sentir que não era o que precisava, por qualquer motivo, é só me chamar e eu devolvo tudo. Sem perguntas. O contato para solicitação de reembolso está disponível na página de confirmação de compra.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     SEÇÃO 10 — CTA FINAL
+═══════════════════════════════════════════ -->
+<section class="secao-cta-final">
+  <div class="container">
+    <p class="cta-final-pre">Você chegou até aqui por algum motivo.</p>
+    <h2 class="cta-final-titulo">Você não abriu esse vídeo por acaso.<br>Você não leu até aqui por acaso.</h2>
+    <div class="divisor"></div>
+    <p class="cta-final-texto">Tem algo que você reconheceu. Uma cena. Uma situação. Uma sensação que você carrega faz tempo e nunca conseguiu nomear direito.</p>
+    <p class="cta-final-texto">O ClaraMente não vai resolver tudo. Nenhuma ferramenta resolve tudo.</p>
+    <p class="cta-final-texto">Mas ele vai te dar algo que você provavelmente ainda não tem: clareza no momento em que mais precisa. Não depois. Na hora.</p>
+    <p class="cta-final-pergunta">Você consegue se imaginar daqui a um ano, vivendo exatamente igual hoje?</p>
+    <p class="cta-final-texto" style="margin-bottom: 40px;">Se a resposta doeu um pouco, você já sabe o que fazer.</p>
+    <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
+    <p class="micro-copy">🔒 Pagamento único de R$97 · Acesso imediato · Garantia de 7 dias · Sem mensalidade</p>
+    <p class="cta-final-fechamento">Se não mudar nada em 7 dias, eu devolvo tudo. Sem perguntas.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">ClaraMente</div>
+  <p class="footer-texto">© 2025 ClaraMente. Todos os direitos reservados.</p>
+  <div class="footer-links">
+    <a href="#">Política de Privacidade</a>
+    <a href="#">Termos de Uso</a>
+    <a href="#">Suporte</a>
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isAberto = item.classList.contains('aberto');
+    // Fecha todos
+    document.querySelectorAll('.faq-item.aberto').forEach(el => el.classList.remove('aberto'));
+    // Abre o clicado (se não estava aberto)
+    if (!isAberto) item.classList.add('aberto');
+  }
+
+  // Animação de entrada nas seções ao fazer scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card-ferramenta, .dia-item, .card-depoimento, .card-para-quem').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
