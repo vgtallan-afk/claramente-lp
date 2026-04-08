@@ -1,998 +1,770 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClaraMente — Você ainda lembra da mulher que queria ser?</title>
+<title>El Mapa Sagrado — Entiende la Biblia desde el principio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --creme: #FDFBF7;
-    --dourado: #C5A059;
-    --dourado-escuro: #A6823A;
-    --dourado-claro: #E8D5A3;
-    --navy: #0A1128;
-    --navy-medio: #1A2540;
-    --branco: #FFFFFF;
-    --cinza-suave: #F0EDE6;
-    --cinza-texto: #5A5550;
-    --texto-principal: #1C1814;
-    --urgencia: #B03020;
-  }
+:root {
+  --cream: #F5F0E8;
+  --cream-light: #F9F5ED;
+  --parchment: #E8DFC8;
+  --parchment-deep: #D4C9A8;
+  --dark: #1C1008;
+  --dark-mid: #2C1A0E;
+  --brown: #4A2C10;
+  --text: #2C1A0E;
+  --gold: #B8860B;
+  --gold-light: #D4A843;
+  --green-cta: #1E6B1E;
+  --green-hover: #155015;
+  --white: #FEFCF8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.6; }
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.25; }
+.container { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+section { padding: 52px 0; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background-color: var(--creme); color: var(--texto-principal); line-height: 1.7; font-size: 16px; }
-  h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; line-height: 1.2; }
-  .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-  .container-wide { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-  .divisor { width: 60px; height: 2px; background: var(--dourado); margin: 20px auto; }
-  .divisor-left { margin: 20px 0; }
+.btn {
+  display: block; width: 100%; max-width: 400px; margin: 0 auto;
+  background: var(--green-cta); color: #fff;
+  font-family: 'Source Sans 3', sans-serif; font-size: 17px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 18px 28px; border: none; border-radius: 4px;
+  cursor: pointer; text-decoration: none; text-align: center;
+  transition: background 0.2s; box-shadow: 0 4px 16px rgba(30,107,30,0.3);
+}
+.btn:hover { background: var(--green-hover); }
+.btn-sub { display: block; text-align: center; font-size: 12px; color: #888; margin-top: 8px; }
+.div-gold { width: 48px; height: 2px; background: var(--gold); margin: 0 auto 22px; }
+.label { font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 10px; text-align: center; }
 
-  /* ─── BOTÃO ─── */
-  .btn-principal {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--dourado) 0%, #D4A843 50%, var(--dourado) 100%);
-    color: var(--navy); font-family: 'DM Sans', sans-serif; font-weight: 500;
-    font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 18px 48px; border-radius: 2px; text-decoration: none;
-    cursor: pointer; border: none; transition: all 0.3s ease;
-    box-shadow: 0 4px 24px rgba(197,160,89,0.35); position: relative; overflow: hidden;
-  }
-  .btn-principal::before {
-    content: ''; position: absolute; top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-  }
-  .btn-principal:hover::before { left: 100%; }
-  .btn-principal:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(197,160,89,0.45); }
-  .micro-copy { font-size: 13px; color: var(--cinza-texto); margin-top: 14px; letter-spacing: 0.02em; }
+/* ANNOUNCE */
+.announce { background: var(--dark); padding: 9px 20px; text-align: center; }
+.announce p { font-size: 12px; color: var(--gold-light); letter-spacing: 0.04em; }
 
-  /* ─── BARRA DE URGÊNCIA COM CONTADOR ─── */
-  .barra-urgencia {
-    background: var(--urgencia);
-    padding: 14px 24px; text-align: center;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-  }
-  .barra-urgencia-inner {
-    display: flex; align-items: center; justify-content: center;
-    gap: 16px; flex-wrap: wrap;
-  }
-  .barra-urgencia-texto {
-    font-size: 13px; font-weight: 500; color: var(--branco);
-    letter-spacing: 0.04em;
-  }
-  .barra-urgencia-texto strong { font-weight: 700; }
-  .contador-wrap {
-    display: flex; align-items: center; gap: 6px;
-  }
-  .contador-bloco {
-    background: rgba(0,0,0,0.3);
-    border-radius: 3px; padding: 4px 10px;
-    text-align: center; min-width: 48px;
-  }
-  .contador-numero {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 600;
-    color: var(--branco); line-height: 1;
-    display: block;
-  }
-  .contador-label {
-    font-size: 9px; color: rgba(255,255,255,0.6);
-    text-transform: uppercase; letter-spacing: 0.1em;
-    display: block; margin-top: 2px;
-  }
-  .contador-sep {
-    font-size: 20px; color: rgba(255,255,255,0.5);
-    font-weight: 300; margin-bottom: 2px;
-  }
+/* ══ HERO ══ */
+.hero {
+  background: linear-gradient(180deg, #080503 0%, #1A0E06 55%, #2C1A0E 100%);
+  padding: 48px 0 56px; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 10%, rgba(184,134,11,0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+.hero .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 14px; }
+.hero h1 { font-size: clamp(16px, 4.5vw, 22px); color: #C8B898; font-weight: 400; font-family: 'Lora', serif; padding: 0 16px; margin-bottom: 10px; line-height: 1.6; }
+.hero h2 { font-size: clamp(24px, 6vw, 40px); color: var(--white); font-weight: 700; padding: 0 12px; margin-bottom: 8px; line-height: 1.2; }
+.hero h2 em { font-style: italic; color: var(--gold-light); }
+.hero .hero-sub { font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: #9A8070; line-height: 1.7; margin: 0 auto 28px; max-width: 460px; padding: 0 16px; }
 
-  /* ─── HERO ─── */
-  .hero {
-    background: var(--navy); padding: 64px 24px 48px;
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: ''; position: absolute; top: -50%; left: 50%;
-    transform: translateX(-50%); width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(197,160,89,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-logo {
-    font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 300;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--dourado); margin-bottom: 40px; opacity: 0.85;
-  }
-  .hero h1 {
-    font-size: clamp(36px, 7vw, 60px); font-weight: 300; color: var(--branco);
-    font-style: italic; margin-bottom: 20px;
-    animation: fadeUp 0.9s ease forwards; animation-delay: 0.1s; opacity: 0;
-  }
-  .hero-sub {
-    font-size: clamp(16px, 2.5vw, 19px); color: rgba(255,255,255,0.65);
-    font-weight: 300; max-width: 560px; margin: 0 auto 12px;
-    animation: fadeUp 0.9s ease forwards; animation-delay: 0.25s; opacity: 0;
-  }
-  .hero-instrucao {
-    font-size: 13px; color: var(--dourado-claro);
-    letter-spacing: 0.06em; margin-top: 16px;
-    animation: fadeUp 0.9s ease forwards; animation-delay: 0.4s; opacity: 0;
-  }
+/* PLACEHOLDER: mockup El Mapa Sagrado — todos los materiales dispuestos, fondo oscuro, luz dorada. 600x380px */
+.hero-mock { width: 100%; max-width: 520px; margin: 0 auto 24px; background: linear-gradient(135deg, #2C1A0E, #3D2510); border: 1px solid rgba(184,134,11,0.2); border-radius: 6px; padding: 28px 20px; min-height: 200px; display: flex; align-items: center; justify-content: center; }
+.hero-mock span { font-size: 11px; color: rgba(184,134,11,0.4); text-align: center; line-height: 1.6; }
 
-  /* ─── PLAYER ─── */
-  .player-wrapper { background: var(--navy); padding: 0 24px 56px; }
-  .player-container { max-width: 820px; margin: 0 auto; }
-  .player-placeholder {
-    width: 100%; aspect-ratio: 16/9; background: #0D1830;
-    border: 1px solid rgba(197,160,89,0.2);
-    display: flex; align-items: center; justify-content: center; border-radius: 2px;
-  }
-  .player-placeholder-texto { text-align: center; color: rgba(255,255,255,0.3); font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-social { font-size: 13px; color: #9A8070; margin-bottom: 20px; }
+.hero-social strong { color: var(--gold-light); }
+.hero-tagline { font-family: 'Lora', serif; font-size: 15px; color: #C8B898; font-style: italic; margin-top: 20px; }
+.hero-badge-row { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+.hbadge { background: rgba(184,134,11,0.1); border: 1px solid rgba(184,134,11,0.25); color: var(--gold-light); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 11px; border-radius: 2px; }
 
-  /* ─── CTA PRIMÁRIO ─── */
-  .secao-cta-primario { background: var(--navy); padding: 0 24px 64px; text-align: center; }
-  .cta-produto-tagline { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--dourado); margin-bottom: 10px; font-weight: 500; opacity: 0.8; }
-  .cta-produto-promessa { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3.2vw, 28px); color: var(--branco); font-weight: 400; max-width: 600px; margin: 0 auto 32px; line-height: 1.35; font-style: italic; padding-bottom: 28px; border-bottom: 1px solid rgba(197,160,89,0.15); }
-  .cta-intro-text { font-size: clamp(17px, 2.5vw, 20px); color: rgba(255,255,255,0.75); font-weight: 300; margin-bottom: 8px; margin-top: 4px; }
-  .cta-intro-pergunta { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3.5vw, 30px); font-style: italic; color: var(--branco); margin-bottom: 32px; }
-  .secao-cta-primario .micro-copy { color: rgba(255,255,255,0.4); }
+/* ══ QUÉ ES ══ */
+.section-es { background: var(--cream-light); text-align: center; }
+.section-es h2 { font-size: clamp(22px, 5vw, 32px); color: var(--dark-mid); margin-bottom: 6px; }
+.section-es .es-tagline { font-family: 'Lora', serif; font-size: 16px; color: #7A5535; font-style: italic; margin-bottom: 24px; }
+.es-bullets { list-style: none; max-width: 480px; margin: 0 auto 28px; text-align: center; }
+.es-bullets li { font-family: 'Source Sans 3', sans-serif; font-size: 16px; font-weight: 700; color: var(--dark-mid); padding: 10px 0; border-bottom: 1px solid rgba(74,44,16,0.1); }
+.es-bullets li:last-child { border-bottom: none; }
 
-  /* ─── BIG IDEA (NOVO) ─── */
-  .secao-big-idea {
-    background: linear-gradient(180deg, var(--navy) 0%, #0F1A35 100%);
-    padding: 64px 24px 72px;
-    text-align: center;
-    border-top: 1px solid rgba(197,160,89,0.1);
-  }
-  .big-idea-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 4.5vw, 40px);
-    color: var(--branco); font-weight: 300;
-    margin-bottom: 28px; line-height: 1.3;
-  }
-  .big-idea-headline em {
-    color: var(--dourado); font-style: italic;
-  }
-  .big-idea-corpo {
-    font-size: 16px; color: rgba(255,255,255,0.6);
-    max-width: 580px; margin: 0 auto; line-height: 1.85;
-  }
-  .big-idea-corpo p { margin-bottom: 16px; }
-  .big-idea-corpo strong { color: rgba(255,255,255,0.85); font-weight: 500; }
-  .big-idea-formato {
-    margin-top: 32px; padding-top: 28px;
-    border-top: 1px solid rgba(197,160,89,0.12);
-    display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
-  }
-  .formato-item {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: rgba(255,255,255,0.5);
-    letter-spacing: 0.02em;
-  }
-  .formato-item span:first-child { font-size: 18px; }
+/* ══ PROBLEMA (bloco escuro dentro do Qué es) ══ */
+.prob-block {
+  background: var(--dark-mid); border-radius: 4px; padding: 22px 20px; margin: 0 auto 28px; max-width: 520px;
+  font-family: 'Lora', serif; font-size: clamp(15px, 3vw, 17px); color: #C8B898; line-height: 1.8; font-style: italic; text-align: center;
+}
+.prob-block em { color: var(--gold-light); font-style: normal; font-weight: 700; }
 
-  /* ─── AURORA DESTAQUE (NOVO — promovida) ─── */
-  .secao-aurora-destaque {
-    background: var(--creme); padding: 80px 24px;
-  }
-  .aurora-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 56px; max-width: 820px; margin: 0 auto;
-    align-items: center;
-  }
-  .aurora-mockup {
-    background: var(--navy-medio); aspect-ratio: 9/16;
-    max-height: 400px; border-radius: 20px;
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(197,160,89,0.15);
-    position: relative; overflow: hidden;
-  }
-  .aurora-mockup::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(197,160,89,0.05) 0%, transparent 60%);
-  }
-  .aurora-mockup-texto {
-    font-size: 11px; color: rgba(255,255,255,0.2);
-    text-align: center; letter-spacing: 0.1em;
-    text-transform: uppercase; padding: 20px;
-  }
-  .aurora-badge {
-    display: inline-block; font-size: 11px;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--dourado); border: 1px solid rgba(197,160,89,0.4);
-    padding: 5px 14px; border-radius: 20px; margin-bottom: 16px;
-    font-weight: 500;
-  }
-  .aurora-titulo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(26px, 4vw, 36px);
-    color: var(--navy); font-weight: 400;
-    margin-bottom: 12px; line-height: 1.2;
-  }
-  .aurora-sub {
-    font-size: 14px; color: var(--cinza-texto);
-    font-style: italic; margin-bottom: 20px;
-  }
-  .aurora-texto {
-    font-size: 15px; color: var(--cinza-texto);
-    line-height: 1.75; margin-bottom: 20px;
-  }
-  .aurora-perguntas {
-    list-style: none; display: flex; flex-direction: column; gap: 12px;
-    margin-bottom: 20px;
-  }
-  .aurora-perguntas li {
-    font-size: 14.5px; color: var(--texto-principal);
-    line-height: 1.6; padding-left: 28px; position: relative;
-  }
-  .aurora-perguntas li::before {
-    content: '💬'; position: absolute; left: 0; top: 0; font-size: 14px;
-  }
-  .aurora-privacidade {
-    font-size: 13px; color: var(--dourado-escuro);
-    font-weight: 500; letter-spacing: 0.02em;
-    padding: 12px 16px; background: rgba(197,160,89,0.08);
-    border-left: 3px solid var(--dourado); margin-top: 16px;
-  }
-  .aurora-nenhum {
-    font-size: 14px; color: var(--cinza-texto);
-    font-style: italic; margin-top: 16px; line-height: 1.7;
-  }
+/* ══ PARA QUIÉN ══ */
+.section-quien { background: var(--parchment); text-align: center; }
+.section-quien h2 { font-size: clamp(22px, 5vw, 32px); color: var(--dark-mid); margin-bottom: 24px; }
+.checks { list-style: none; max-width: 500px; margin: 0 auto 28px; text-align: left; }
+.checks li { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(74,44,16,0.1); font-size: 15px; color: var(--text); line-height: 1.5; }
+.checks li:last-child { border-bottom: none; }
+.chk { color: var(--green-cta); font-size: 17px; flex-shrink: 0; margin-top: 2px; }
 
-  /* ─── AGITAÇÃO DA DOR ─── */
-  .secao-agitacao { background: #0F1A35; padding: 72px 24px; border-top: 1px solid rgba(197,160,89,0.1); border-bottom: 1px solid rgba(197,160,89,0.1); }
-  .agitacao-titulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(26px, 4vw, 38px); color: var(--branco); font-weight: 300; text-align: center; margin-bottom: 16px; }
-  .agitacao-subtitulo { text-align: center; font-size: 16px; color: rgba(255,255,255,0.5); max-width: 560px; margin: 0 auto 48px; line-height: 1.75; }
-  .grid-agitacao { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; max-width: 820px; margin: 0 auto 40px; }
-  .card-agitacao { background: rgba(255,255,255,0.04); border: 1px solid rgba(197,160,89,0.12); border-radius: 2px; padding: 24px 20px; }
-  .card-agitacao-emoji { font-size: 24px; margin-bottom: 12px; display: block; }
-  .card-agitacao p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
-  .agitacao-fechamento { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: clamp(18px, 2.8vw, 24px); font-style: italic; color: var(--dourado); max-width: 600px; margin: 0 auto; line-height: 1.5; }
+/* ══ QUÉ INCLUYE ══ */
+.section-inc { background: var(--cream-light); text-align: center; }
+.section-inc h2 { font-size: clamp(22px, 5vw, 32px); color: var(--dark-mid); margin-bottom: 6px; }
+.section-inc .inc-sub { font-family: 'Lora', serif; font-size: 15px; color: #7A5535; font-style: italic; margin-bottom: 28px; }
 
-  /* ─── PRODUTO ─── */
-  .secao-produto { background: var(--creme); padding: 72px 24px 48px; text-align: center; }
-  .produto-badge { display: inline-block; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dourado); border: 1px solid rgba(197,160,89,0.4); padding: 6px 16px; border-radius: 20px; margin-bottom: 20px; }
-  .produto-titulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 5vw, 48px); color: var(--navy); font-weight: 400; margin-bottom: 16px; }
-  .produto-subtitulo { font-size: 16px; color: var(--cinza-texto); max-width: 560px; margin: 0 auto 48px; line-height: 1.75; }
-  .grid-pilares { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 820px; margin: 0 auto 64px; }
-  .card-pilar { background: var(--navy); border-radius: 3px; padding: 36px 28px; text-align: left; position: relative; overflow: hidden; }
-  .card-pilar::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--dourado), transparent); }
-  .card-pilar-emoji { font-size: 32px; margin-bottom: 16px; display: block; }
-  .card-pilar-titulo { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--branco); font-weight: 400; margin-bottom: 10px; }
-  .card-pilar-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+.prod-list { max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; gap: 0; }
+.prod-item {
+  display: flex; align-items: center; gap: 0; min-height: 160px;
+}
+.prod-item:nth-child(even) { flex-direction: row-reverse; }
 
-  /* ─── MOCKUPS ─── */
-  .secao-mockups { padding: 0 24px 72px; background: var(--creme); }
-  .bloco-mockup { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; max-width: 820px; margin: 0 auto 64px; }
-  .bloco-mockup:last-child { margin-bottom: 0; }
-  .bloco-mockup.invertido { direction: rtl; }
-  .bloco-mockup.invertido > * { direction: ltr; }
-  .mockup-placeholder { background: var(--navy-medio); aspect-ratio: 9/16; max-height: 360px; border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(197,160,89,0.15); position: relative; overflow: hidden; }
-  .mockup-placeholder::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(197,160,89,0.05) 0%, transparent 60%); }
-  .mockup-placeholder-texto { font-size: 11px; color: rgba(255,255,255,0.2); text-align: center; letter-spacing: 0.1em; text-transform: uppercase; padding: 20px; }
-  .mockup-titulo { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--navy); font-weight: 400; margin-bottom: 12px; line-height: 1.25; }
-  .mockup-texto { font-size: 15px; color: var(--cinza-texto); line-height: 1.75; }
+/* PLACEHOLDER imagem livro: 160x160px fundo escuro marrom com capa do livro */
+.prod-img {
+  width: 160px; min-width: 160px; height: 160px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: rgba(184,134,11,0.5); text-align: center; line-height: 1.5;
+}
+.prod-item:nth-child(odd) .prod-img { background: #3D2510; }
+.prod-item:nth-child(even) .prod-img { background: var(--parchment-deep); color: #7A5535; }
 
-  /* ─── RESULTADOS TANGÍVEIS ─── */
-  .secao-resultados { background: var(--navy); padding: 80px 24px; }
-  .resultados-intro { text-align: center; font-size: 15px; color: rgba(255,255,255,0.55); max-width: 580px; margin: 0 auto 40px; line-height: 1.75; }
-  .grid-resultados { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 820px; margin: 0 auto 40px; }
-  .card-resultado { background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,89,0.15); border-radius: 2px; padding: 24px 20px; }
-  .resultado-numero { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--dourado); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; font-weight: 400; }
-  .resultado-titulo { font-family: 'Cormorant Garamond', serif; font-size: 20px; color: var(--branco); font-weight: 400; margin-bottom: 8px; }
-  .resultado-desc { font-size: 13.5px; color: rgba(255,255,255,0.55); line-height: 1.65; }
-  .resultados-fechamento { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto; }
-  .resultados-fechamento strong { color: var(--dourado); font-style: normal; }
+.prod-body { flex: 1; padding: 20px 18px; text-align: center; }
+.prod-body h4 { font-size: 15px; color: var(--dark-mid); margin-bottom: 6px; line-height: 1.3; }
+.prod-body p { font-size: 13px; color: #7A5535; line-height: 1.5; }
+.prod-item:nth-child(even) .prod-body { background: var(--parchment); }
+.prod-item:nth-child(odd) .prod-body { background: var(--cream-light); }
 
-  /* ─── BÔNUS ─── */
-  .secao-bonus { background: var(--cinza-suave); padding: 80px 24px; }
-  .bonus-pre { text-align: center; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dourado); margin-bottom: 12px; font-weight: 500; }
-  .secao-titulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 42px); font-weight: 400; text-align: center; color: var(--navy); margin-bottom: 12px; }
-  .secao-subtitulo { text-align: center; color: var(--cinza-texto); font-size: 16px; max-width: 580px; margin: 0 auto 48px; line-height: 1.7; }
-  .grid-bonus { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto 40px; }
-  .card-bonus { background: var(--branco); border: 1px solid rgba(197,160,89,0.2); border-radius: 2px; padding: 28px 22px; position: relative; }
-  .card-bonus::before { content: 'BÔNUS'; position: absolute; top: -10px; left: 20px; background: var(--dourado); color: var(--navy); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; padding: 3px 10px; border-radius: 2px; }
-  .card-bonus-emoji { font-size: 26px; margin-bottom: 12px; display: block; margin-top: 4px; }
-  .card-bonus-titulo { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--navy); font-weight: 400; margin-bottom: 8px; }
-  .card-bonus-desc { font-size: 13.5px; color: var(--cinza-texto); line-height: 1.6; margin-bottom: 12px; }
-  .card-bonus-valor { font-size: 12px; color: var(--dourado); font-weight: 500; letter-spacing: 0.04em; text-decoration: line-through; opacity: 0.8; }
-  .bonus-total { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; font-style: italic; color: var(--cinza-texto); }
-  .bonus-total strong { color: var(--dourado-escuro); font-style: normal; }
+/* ══ MAPA 12 CÓDIGOS ══ */
+.section-mapa { background: var(--dark); text-align: center; }
+.section-mapa h2 { font-size: clamp(22px, 5vw, 32px); color: var(--white); margin-bottom: 8px; }
+.section-mapa .mapa-sub { font-family: 'Lora', serif; font-size: 15px; color: #A89880; font-style: italic; margin-bottom: 24px; }
+.mapa-img-wrap { max-width: 480px; margin: 0 auto 24px; }
+/* SUBSTITUIR pelo <img> real com src da imagem do mapa */
+.mapa-placeholder { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid rgba(184,134,11,0.2); border-radius: 6px; min-height: 300px; display: flex; align-items: center; justify-content: center; }
+.mapa-placeholder span { font-size: 12px; color: rgba(184,134,11,0.4); text-align: center; }
+.mapa-codes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-width: 480px; margin: 0 auto 24px; }
+.code-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,134,11,0.15); border-radius: 4px; padding: 10px 12px; text-align: left; }
+.code-num { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 2px; }
+.code-name { font-size: 13px; font-weight: 700; color: var(--white); display: block; margin-bottom: 2px; }
+.code-desc { font-size: 11px; color: #9A8070; line-height: 1.4; }
 
-  /* ─── MAPA 7 DIAS ─── */
-  .secao-mapa { background: var(--creme); padding: 80px 24px; }
-  .grid-dias { display: grid; grid-template-columns: 1fr; gap: 0; max-width: 720px; margin: 0 auto; }
-  .dia-item { display: grid; grid-template-columns: 44px 1fr auto; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(197,160,89,0.15); align-items: start; }
-  .dia-item:last-child { border-bottom: none; }
-  .dia-numero { width: 44px; height: 44px; border: 1px solid rgba(197,160,89,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 17px; color: var(--dourado); font-weight: 500; flex-shrink: 0; }
-  .dia-titulo { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--navy); font-weight: 400; margin-bottom: 4px; }
-  .dia-descricao { font-size: 14px; color: var(--cinza-texto); line-height: 1.65; margin-bottom: 8px; }
-  .dia-resultado { font-size: 12.5px; color: var(--dourado-escuro); font-weight: 500; letter-spacing: 0.02em; }
-  .dia-resultado::before { content: '→ '; }
-  .mapa-fechamento { text-align: center; margin-top: 40px; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--cinza-texto); max-width: 520px; margin-left: auto; margin-right: auto; }
-  .mapa-fechamento strong { color: var(--dourado); font-style: normal; }
+/* ══ QUIÉN PUEDE USARLO ══ */
+.section-quien-usa { background: var(--dark-mid); text-align: center; }
+.section-quien-usa h2 { font-size: clamp(22px, 5vw, 32px); color: var(--white); margin-bottom: 28px; }
+.uso-list { max-width: 540px; margin: 0 auto 28px; display: flex; flex-direction: column; gap: 12px; }
+.uso-item { display: flex; gap: 0; border-radius: 4px; overflow: hidden; min-height: 100px; }
 
-  /* ─── DEPOIMENTOS ─── */
-  .secao-depoimentos { background: #0F1A35; padding: 80px 24px; }
-  .secao-depoimentos .secao-titulo { color: var(--branco); }
-  .secao-depoimentos .secao-subtitulo { color: rgba(255,255,255,0.45); }
-  .grid-depoimentos { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
-  .card-depoimento { background: rgba(255,255,255,0.05); border: 1px solid rgba(197,160,89,0.15); border-radius: 3px; padding: 28px; }
-  .estrelas { color: var(--dourado); font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
-  .depoimento-texto { font-size: 14.5px; color: rgba(255,255,255,0.7); line-height: 1.75; font-style: italic; margin-bottom: 18px; }
-  .depoimento-autor { font-size: 13px; color: var(--dourado); font-weight: 500; letter-spacing: 0.04em; }
+/* PLACEHOLDER foto: ver instruções de prompt abaixo de cada item */
+.uso-foto { width: 110px; min-width: 110px; background: #3D2510; display: flex; align-items: center; justify-content: center; font-size: 9px; color: rgba(184,134,11,0.4); text-align: center; line-height: 1.5; }
+.uso-body { flex: 1; background: rgba(255,255,255,0.05); padding: 16px; text-align: left; }
+.uso-body h4 { font-size: 14px; color: var(--white); margin-bottom: 4px; }
+.uso-body p { font-size: 13px; color: #A89070; line-height: 1.5; }
 
-  /* ─── AGITAÇÃO REFORÇO (antes do preço) ─── */
-  .secao-agitacao-reforco {
-    background: var(--creme); padding: 72px 24px;
-    text-align: center;
-  }
-  .agitacao-reforco-titulo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(24px, 4vw, 34px);
-    color: var(--navy); font-weight: 300;
-    margin-bottom: 24px; line-height: 1.3;
-  }
-  .agitacao-reforco-texto {
-    font-size: 16px; color: var(--cinza-texto);
-    max-width: 560px; margin: 0 auto; line-height: 1.85;
-  }
-  .agitacao-reforco-texto p { margin-bottom: 16px; }
-  .agitacao-reforco-destaque {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-style: italic;
-    color: var(--navy); margin-top: 12px;
-  }
+/* ══ BONOS ══ */
+.section-bon { background: var(--cream-light); text-align: center; }
+.section-bon h2 { font-size: clamp(22px, 5vw, 32px); color: var(--dark-mid); margin-bottom: 4px; }
+.section-bon .bon-intro { font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: #7A5535; margin-bottom: 6px; }
+.section-bon .bon-sub { font-family: 'Lora', serif; font-size: 14px; color: #9A7050; font-style: italic; margin-bottom: 24px; }
+.bon-list { max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.bon-item { background: var(--white); border: 1px solid var(--parchment-deep); border-radius: 4px; padding: 14px; text-align: left; display: flex; gap: 12px; align-items: flex-start; }
+/* PLACEHOLDER imagem bônus: 52x68px capa livro */
+.bon-img { width: 52px; min-width: 52px; height: 68px; background: linear-gradient(135deg, var(--parchment), var(--parchment-deep)); border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #9B7A50; text-align: center; line-height: 1.4; }
+.bon-body { flex: 1; }
+.bon-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: var(--gold); text-transform: uppercase; display: block; margin-bottom: 3px; }
+.bon-title { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--dark-mid); margin-bottom: 3px; line-height: 1.3; }
+.bon-desc { font-size: 12px; color: #7A5535; line-height: 1.45; margin-bottom: 6px; }
+.bon-price { display: flex; align-items: center; gap: 6px; }
+.pstrike { font-size: 12px; color: #AAA; text-decoration: line-through; }
+.pfree { font-size: 12px; font-weight: 700; color: var(--green-cta); }
 
-  /* ─── AUTORIDADE ─── */
-  .secao-autoridade { background: var(--cinza-suave); padding: 80px 24px; }
-  .autoridade-box { max-width: 700px; margin: 0 auto; display: grid; grid-template-columns: 160px 1fr; gap: 48px; align-items: start; }
-  .autoridade-foto { width: 160px; height: 160px; border-radius: 50%; background: var(--navy-medio); display: flex; align-items: center; justify-content: center; border: 3px solid rgba(197,160,89,0.3); flex-shrink: 0; overflow: hidden; }
-  .autoridade-foto-texto { font-size: 11px; color: rgba(255,255,255,0.3); text-align: center; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px; }
-  .autoridade-pre { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dourado); margin-bottom: 6px; font-weight: 500; }
-  .autoridade-nome { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--navy); font-weight: 400; margin-bottom: 6px; }
-  .autoridade-credencial { font-size: 13px; color: var(--cinza-texto); font-style: italic; margin-bottom: 16px; }
-  .autoridade-texto { font-size: 15px; color: var(--cinza-texto); line-height: 1.75; }
-  .autoridade-numeros { display: flex; gap: 24px; margin-top: 20px; }
-  .autoridade-num { text-align: center; }
-  .autoridade-num-valor { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--navy); font-weight: 400; display: block; }
-  .autoridade-num-label { font-size: 12px; color: var(--cinza-texto); letter-spacing: 0.04em; }
+/* ══ REATIVAÇÃO ══ */
+.section-react { background: var(--parchment); text-align: center; padding: 44px 0; }
+.section-react h3 { font-family: 'Playfair Display', serif; font-size: clamp(20px, 5vw, 28px); color: var(--dark-mid); line-height: 1.3; margin-bottom: 12px; }
+.section-react h3 em { color: var(--brown); font-style: italic; }
+.section-react p { font-size: 15px; color: #7A5535; line-height: 1.7; margin-bottom: 8px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.section-react .proof { font-size: 13px; font-weight: 700; color: var(--brown); margin-top: 12px; margin-bottom: 24px; }
 
-  /* ─── PARA QUEM É ─── */
-  .secao-para-quem { background: var(--navy); padding: 80px 24px; }
-  .secao-para-quem .secao-titulo { color: var(--branco); }
-  .grid-para-quem { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 820px; margin: 40px auto 0; }
-  .card-para-quem { background: rgba(255,255,255,0.05); border-radius: 3px; padding: 32px 28px; border-top: 3px solid transparent; }
-  .card-para-quem.sim { border-top-color: var(--dourado); }
-  .card-para-quem.nao { border-top-color: rgba(255,255,255,0.15); }
-  .card-para-quem h3 { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--branco); margin-bottom: 20px; font-weight: 500; }
-  .lista-para-quem { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .lista-para-quem li { font-size: 14.5px; color: rgba(255,255,255,0.65); line-height: 1.6; padding-left: 26px; position: relative; }
-  .lista-para-quem li::before { position: absolute; left: 0; top: 0; font-size: 14px; }
-  .card-para-quem.sim .lista-para-quem li::before { content: '✅'; }
-  .card-para-quem.nao .lista-para-quem li::before { content: '❌'; }
-  .para-quem-fechamento { text-align: center; margin-top: 32px; font-size: 15px; color: rgba(255,255,255,0.5); font-style: italic; max-width: 580px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+/* ══ PRECIO ══ */
+.section-price { background: var(--dark); text-align: center; }
+.price-wrap { background: rgba(255,255,255,0.04); border: 1px solid rgba(184,134,11,0.25); border-radius: 8px; padding: 24px 20px; max-width: 480px; margin: 24px auto; }
 
-  /* ─── STACK + PREÇO ─── */
-  .secao-preco { background: var(--creme); padding: 80px 24px; text-align: center; }
-  .stack-lista { list-style: none; max-width: 520px; margin: 0 auto 12px; text-align: left; }
-  .stack-lista li { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(197,160,89,0.15); font-size: 15px; color: var(--texto-principal); }
-  .stack-lista li:last-child { border-bottom: none; }
-  .stack-nome { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .stack-nome span:first-child { font-size: 18px; }
-  .stack-tag-core { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; background: rgba(10,17,40,0.1); color: var(--navy); padding: 2px 8px; border-radius: 10px; text-transform: uppercase; margin-left: 4px; }
-  .stack-tag-bonus { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; background: rgba(197,160,89,0.15); color: var(--dourado-escuro); padding: 2px 8px; border-radius: 10px; text-transform: uppercase; margin-left: 4px; }
-  .stack-valor-riscado { color: var(--cinza-texto); text-decoration: line-through; font-size: 14px; opacity: 0.7; white-space: nowrap; }
-  .total-riscado { max-width: 520px; margin: 0 auto 8px; text-align: right; font-size: 14px; color: var(--cinza-texto); padding-top: 8px; }
-  .total-riscado span { text-decoration: line-through; font-weight: 500; }
-  .preco-destaque { max-width: 500px; margin: 36px auto 0; background: var(--navy); border-radius: 3px; padding: 40px 36px; text-align: center; }
-  .preco-por { font-size: 13px; color: rgba(255,255,255,0.5); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
-  .preco-valor { font-family: 'Cormorant Garamond', serif; font-size: 72px; color: var(--dourado); font-weight: 300; line-height: 1; margin-bottom: 4px; }
-  .preco-parcelamento { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 32px; }
-  .preco-ancoragem { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.65; margin-top: 20px; font-style: italic; }
-  .urgencia-bloco { max-width: 500px; margin: 20px auto 0; background: rgba(176,48,32,0.12); border: 1px solid rgba(176,48,32,0.3); border-radius: 2px; padding: 14px 20px; text-align: center; }
-  .urgencia-bloco p { font-size: 13px; color: #E8A09A; line-height: 1.6; }
-  .urgencia-bloco strong { color: #F1948A; }
+/* PLACEHOLDER: imagem mockup escuro com todos os materiais + preço. 440x320px */
+.price-mockup { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(184,134,11,0.15); border-radius: 4px; min-height: 180px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+.price-mockup span { font-size: 11px; color: rgba(184,134,11,0.4); text-align: center; }
 
-  /* ─── GARANTIA ─── */
-  .secao-garantia { background: var(--cinza-suave); padding: 80px 24px; }
-  .garantia-box { max-width: 620px; margin: 0 auto; background: var(--branco); border: 1px solid rgba(197,160,89,0.25); border-radius: 3px; padding: 48px; text-align: center; }
-  .garantia-icone { font-size: 52px; margin-bottom: 20px; display: block; }
-  .garantia-titulo { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--navy); font-weight: 400; margin-bottom: 20px; }
-  .garantia-texto { font-size: 15px; color: var(--cinza-texto); line-height: 1.75; margin-bottom: 14px; }
-  .garantia-destaque { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--navy); font-style: italic; margin-top: 20px; }
+.price-headline { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--white); margin-bottom: 16px; }
+.stack { list-style: none; text-align: left; margin-bottom: 16px; }
+.stack li { display: flex; justify-content: space-between; gap: 8px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; color: #B09070; }
+.stack li:last-child { border-bottom: none; }
+.iprice { color: #555; text-decoration: line-through; white-space: nowrap; }
+.stack-total { border-top: 2px solid rgba(184,134,11,0.22); padding-top: 10px; text-align: right; font-size: 13px; color: var(--gold-light); font-weight: 700; margin-bottom: 20px; }
 
-  /* ─── FAQ ─── */
-  .secao-faq { background: var(--navy); padding: 80px 24px; }
-  .secao-faq .secao-titulo { color: var(--branco); }
-  .faq-lista { max-width: 700px; margin: 0 auto; }
-  .faq-item { border-bottom: 1px solid rgba(197,160,89,0.12); }
-  .faq-pergunta { width: 100%; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 22px 0; text-align: left; gap: 16px; }
-  .faq-pergunta-texto { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--branco); font-weight: 400; line-height: 1.4; }
-  .faq-icone { flex-shrink: 0; width: 24px; height: 24px; border: 1px solid rgba(197,160,89,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--dourado); font-size: 16px; transition: transform 0.3s ease; }
-  .faq-item.aberto .faq-icone { transform: rotate(45deg); }
-  .faq-resposta { display: none; padding: 0 0 22px; font-size: 14.5px; color: rgba(255,255,255,0.6); line-height: 1.75; }
-  .faq-item.aberto .faq-resposta { display: block; }
+.price-val-row { margin-bottom: 6px; }
+.price-was { font-size: 13px; color: #555; text-decoration: line-through; }
+.price-val { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--gold-light); font-weight: 700; line-height: 1; }
+.price-val span { font-size: 20px; vertical-align: top; margin-top: 9px; display: inline-block; }
+.price-detail { font-size: 12px; color: #9A8070; margin-bottom: 20px; }
 
-  /* ─── CTA FINAL ─── */
-  .secao-cta-final { background: var(--creme); padding: 96px 24px; text-align: center; }
-  .cta-final-pre { font-size: 13px; color: var(--dourado); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; font-weight: 500; }
-  .cta-final-titulo { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 6vw, 50px); color: var(--navy); font-weight: 300; max-width: 640px; margin: 0 auto 24px; line-height: 1.2; }
-  .cta-final-texto { font-size: 16px; color: var(--cinza-texto); max-width: 500px; margin: 0 auto 14px; line-height: 1.75; }
-  .cta-final-pergunta { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 3vw, 26px); font-style: italic; color: var(--navy); max-width: 480px; margin: 0 auto 40px; line-height: 1.4; }
-  .cta-final-fechamento { margin-top: 20px; font-size: 14px; color: var(--cinza-texto); font-style: italic; }
+.price-note { font-size: 12px; color: var(--gold); letter-spacing: 0.04em; margin-top: 10px; }
+.price-delivery { font-size: 12px; color: #555; margin-top: 6px; }
 
-  /* ─── FOOTER ─── */
-  .footer { background: var(--navy); padding: 36px 24px; text-align: center; }
-  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: var(--dourado); opacity: 0.6; margin-bottom: 10px; }
-  .footer-texto { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.7; }
-  .footer-links { margin-top: 10px; display: flex; justify-content: center; gap: 24px; }
-  .footer-links a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--dourado); }
+/* ══ GARANTIA ══ */
+.section-gar { background: var(--cream-light); text-align: center; }
+.gar-top { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 16px; flex-wrap: wrap; }
+.gar-badge { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #B8860B, #E8C060); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 11px; font-weight: 700; color: var(--dark); line-height: 1.2; box-shadow: 0 4px 18px rgba(184,134,11,0.35); flex-shrink: 0; }
+.gar-badge .gnum { font-size: 24px; font-weight: 900; }
+.gar-text h2 { font-size: clamp(20px, 4.5vw, 26px); color: var(--dark-mid); margin-bottom: 4px; text-align: left; }
+.gar-text p { font-size: 14px; color: #6B4E35; line-height: 1.6; text-align: left; }
+.section-gar .gar-detail { font-size: 13px; color: #9A7050; margin-top: 12px; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+/* ══ FAQ ══ */
+.section-faq { background: var(--parchment); text-align: center; }
+.section-faq h2 { font-size: clamp(20px, 4.5vw, 28px); color: var(--dark-mid); margin-bottom: 22px; }
+.faq-list { max-width: 540px; margin: 0 auto; text-align: left; }
+.faq-item { border-bottom: 1px solid rgba(74,44,16,0.1); }
+.faq-q { width: 100%; background: none; border: none; text-align: left; padding: 14px 0; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; cursor: pointer; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--dark-mid); line-height: 1.4; }
+.faq-arr { color: var(--gold); font-size: 14px; flex-shrink: 0; transition: transform 0.2s; margin-top: 3px; }
+.faq-q.open .faq-arr { transform: rotate(180deg); }
+.faq-a { font-size: 14px; color: #6B4E35; line-height: 1.7; padding: 0 0 14px; display: none; }
+.faq-a.open { display: block; }
 
-  @media (max-width: 640px) {
-    .grid-pilares, .grid-para-quem, .autoridade-box, .aurora-grid { grid-template-columns: 1fr; }
-    .bloco-mockup { grid-template-columns: 1fr; gap: 28px; }
-    .bloco-mockup.invertido { direction: ltr; }
-    .mockup-placeholder { max-height: 240px; }
-    .aurora-mockup { max-height: 280px; }
-    .garantia-box { padding: 32px 20px; }
-    .grid-depoimentos, .grid-bonus, .grid-resultados { grid-template-columns: 1fr; }
-    .autoridade-foto { width: 120px; height: 120px; }
-    .dia-item { grid-template-columns: 44px 1fr; }
-    .barra-urgencia-inner { gap: 10px; }
-    .preco-destaque { padding: 32px 20px; }
-    .autoridade-numeros { gap: 16px; }
-    .big-idea-formato { gap: 16px; }
-  }
+/* ══ FINAL CTA ══ */
+.section-final { background: linear-gradient(180deg, var(--dark-mid), var(--dark)); text-align: center; }
+.section-final h2 { font-size: clamp(22px, 5vw, 34px); color: var(--white); line-height: 1.25; margin-bottom: 12px; }
+.section-final h2 em { font-style: italic; color: var(--gold-light); }
+.section-final .sub { font-family: 'Lora', serif; font-size: 15px; color: #A89880; line-height: 1.8; margin-bottom: 28px; max-width: 440px; margin-left: auto; margin-right: auto; }
+.final-foot { font-size: 12px; color: #5A4535; margin-top: 12px; }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 20px; text-align: center; border-top: 1px solid rgba(184,134,11,0.07); }
+footer p { font-size: 11px; color: #4A3525; line-height: 1.7; }
+footer a { color: #6A5040; text-decoration: none; }
+
+@media (max-width: 480px) {
+  section { padding: 40px 0; }
+  .hero { padding: 36px 0 44px; }
+  .hero h2 { font-size: 26px; }
+  .prod-item, .prod-item:nth-child(even) { flex-direction: column; }
+  .prod-img { width: 100%; height: 140px; }
+  .uso-item { flex-direction: column; }
+  .uso-foto { width: 100%; height: 80px; }
+  .price-val { font-size: 44px; }
+  .btn { font-size: 15px; padding: 16px 20px; }
+  .gar-top { flex-direction: column; align-items: center; }
+  .gar-text h2, .gar-text p { text-align: center; }
+  .mapa-codes { grid-template-columns: 1fr; }
+  .bon-item { flex-direction: column; }
+  .bon-img { width: 100%; height: 50px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ══ BARRA DE URGÊNCIA COM CONTADOR ══ -->
-<div class="barra-urgencia">
-  <div class="barra-urgencia-inner">
-    <span class="barra-urgencia-texto">🔥 <strong>Oferta de lançamento encerra em:</strong></span>
-    <div class="contador-wrap">
-      <div class="contador-bloco">
-        <span class="contador-numero" id="cnt-horas">47</span>
-        <span class="contador-label">horas</span>
-      </div>
-      <span class="contador-sep">:</span>
-      <div class="contador-bloco">
-        <span class="contador-numero" id="cnt-min">59</span>
-        <span class="contador-label">min</span>
-      </div>
-      <span class="contador-sep">:</span>
-      <div class="contador-bloco">
-        <span class="contador-numero" id="cnt-seg">59</span>
-        <span class="contador-label">seg</span>
-      </div>
-    </div>
-    <span class="barra-urgencia-texto">Depois o preço sobe para <strong>R$147</strong></span>
-  </div>
+<div class="announce">
+  <p>Precio especial de lanzamiento &nbsp;·&nbsp; Acceso inmediato &nbsp;·&nbsp; 7 días de garantía</p>
 </div>
 
-<!-- ══ HERO (subheadline atualizada com information gap) ══ -->
+
+<!-- ══════════════════════════════
+     1. HERO
+     ══════════════════════════════ -->
 <section class="hero">
   <div class="container">
-    <div class="hero-logo">ClaraMente</div>
-    <h1>Você ainda lembra da mulher que queria ser?</h1>
-    <p class="hero-sub">Ela não desistiu. Ela foi sendo silenciada, decisão por decisão. O vídeo abaixo mostra o que aconteceu, por que aconteceu, e o que você pode fazer nos próximos 7 dias.</p>
-    <p class="hero-instrucao">O que você vai descobrir muda a forma como você enxerga decisões que vem tomando há anos.</p>
-  </div>
-</section>
+    <span class="eyebrow">El Mapa Sagrado</span>
 
-<!-- ══ PLAYER ══ -->
-<section class="player-wrapper">
-  <div class="player-container">
-    <div class="player-placeholder">
-      <div class="player-placeholder-texto">[ Insira aqui o player da VSL ]</div>
+    <p class="hero h1" style="font-family:'Lora',serif;font-size:clamp(15px,3.5vw,18px);color:#C8B898;font-weight:400;padding:0 16px;margin-bottom:10px;line-height:1.7;">
+      Abriste la Biblia con fe.<br>
+      La cerraste sin entender nada.
+    </p>
+
+    <h2 style="font-size:clamp(22px,5.5vw,38px);color:var(--white);font-weight:700;padding:0 12px;margin-bottom:18px;line-height:1.2;font-family:'Playfair Display',serif;">
+      El Mapa Sagrado te guía<br>por cada libro, cada pasaje,<br>
+      <em>de forma visual y clara.</em>
+    </h2>
+
+    <p class="hero-sub">Sin teología difícil. Sin perderte. Solo tú, la Palabra, y un mapa.</p>
+
+    <!-- PLACEHOLDER: Mockup El Mapa Sagrado — todos los materiales dispuestos, fondo oscuro, luz dorada lateral. 600x380px. Reemplazar este bloque por <img src="mockup.png" style="width:100%;max-width:520px;margin:0 auto 24px;display:block;border-radius:6px;"> -->
+    <div class="hero-mock">
+      <span>PLACEHOLDER<br>Mockup de todos los materiales<br>Reemplazar por imagen real</span>
+    </div>
+
+    <a href="https://almadigital.pro/" class="btn">Quiero mi Mapa Sagrado →</a>
+    <span class="btn-sub">$6,90 USD · Pago único · Acceso inmediato</span>
+
+    <p class="hero-social" style="margin-top:20px;"><strong>+4.000 creyentes</strong> ya encontraron su camino en la Biblia</p>
+    <p class="hero-tagline">Deja de leer la Biblia sin entenderla.</p>
+
+    <div class="hero-badge-row">
+      <span class="hbadge">Estudio Visual</span>
+      <span class="hbadge">100% Digital</span>
+      <span class="hbadge">Acceso de por vida</span>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA PRIMÁRIO ══ -->
-<section class="secao-cta-primario">
+
+<!-- ══════════════════════════════
+     2. QUÉ ES
+     ══════════════════════════════ -->
+<section class="section-es">
   <div class="container">
-    <p class="cta-produto-tagline">ClaraMente</p>
-    <p class="cta-produto-promessa">Em 7 dias, um método prático pra você parar de ceder, tomar suas próprias decisões e redefinir a mulher que você é.</p>
-    <p class="cta-intro-text">Se você chegou até aqui, você já sabe o que está acontecendo.</p>
-    <p class="cta-intro-pergunta">A única pergunta agora é: você vai fazer algo a respeito?</p>
-    <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
-    <p class="micro-copy">🔒 Pagamento único de R$97 · Acesso imediato · Garantia de 7 dias</p>
+    <span class="label">¿Qué es El Mapa Sagrado?</span>
+    <div class="div-gold"></div>
+
+    <h2>Una guía visual que conecta<br>todo lo que ya leíste</h2>
+    <p class="es-tagline">Pasaje por pasaje. Sin perderte. Sin seminario.</p>
+
+    <div class="prob-block">
+      No es falta de fe.<br>
+      No eres tú.<br>
+      Es que la Biblia tiene una base que nadie te enseñó.<br>
+      <em>Sin esa base, el resto nunca conecta del todo.</em>
+    </div>
+
+    <ul class="es-bullets">
+      <li>Sin teología difícil.</li>
+      <li>Sin perderte.</li>
+      <li>Solo tú, la Palabra, y un mapa.</li>
+    </ul>
+
+    <a href="https://almadigital.pro/" class="btn">Sí, quiero</a>
+    <span class="btn-sub">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ BIG IDEA + FORMATO (NOVO — não existia antes) ══ -->
-<section class="secao-big-idea">
+
+<!-- ══════════════════════════════
+     3. PARA QUIÉN
+     ══════════════════════════════ -->
+<section class="section-quien">
   <div class="container">
-    <h2 class="big-idea-headline">Entender o problema <em>não resolve.</em></h2>
-    <div class="big-idea-corpo">
-      <p>Você pode ler sobre isso. Assistir vídeos. Fazer terapia. E ainda assim, na hora que o silêncio chega depois do seu "não", a cabeça esvazia e você cede.</p>
-      <p><strong>O ClaraMente existe pra um momento específico: a hora que a pressão aparece.</strong></p>
-      <p>Não é um curso. Não é uma aula. É uma caixa de ferramentas que funciona no segundo em que você precisa. Você abre, usa, e volta pra sua vida com clareza. Em vez de voltar atrás.</p>
-    </div>
-    <div class="big-idea-formato">
-      <div class="formato-item"><span>📱</span> App no celular</div>
-      <div class="formato-item"><span>🔓</span> Sem baixar nada</div>
-      <div class="formato-item"><span>⚡</span> Acesso em segundos</div>
-      <div class="formato-item"><span>🔒</span> 100% privado</div>
-    </div>
+    <span class="label">Este material es para ti si:</span>
+    <div class="div-gold"></div>
+    <h2>¿Esto eres tú?</h2>
+
+    <ul class="checks">
+      <li><span class="chk">✓</span><span>Abres la Biblia con ganas y la cierras sin saber qué leíste.</span></li>
+      <li><span class="chk">✓</span><span>Lideras un grupo pequeño y necesitas material claro y profundo.</span></li>
+      <li><span class="chk">✓</span><span>Eres nuevo creyente y no sabes por dónde empezar.</span></li>
+      <li><span class="chk">✓</span><span>Buscas una forma visual y práctica de estudiar sin perderte.</span></li>
+      <li><span class="chk">✓</span><span>Quieres enseñar a otros pero primero necesitas entender tú.</span></li>
+    </ul>
+
+    <a href="https://almadigital.pro/" class="btn">Sí, esto me describe</a>
+    <span class="btn-sub">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ AURORA IA — DESTAQUE (promovida de Bloco 6 para Bloco 1) ══ -->
-<section class="secao-aurora-destaque">
-  <div class="container-wide">
-    <div class="aurora-grid">
-      <div class="aurora-mockup">
-        <!-- SUBSTITUA PELO MOCKUP AURORA_IA -->
-        <div class="aurora-mockup-texto">Mockup Aurora IA<br>(conversa)</div>
-      </div>
-      <div>
-        <div class="aurora-badge">Diferencial exclusivo</div>
-        <h2 class="aurora-titulo">A única coisa que funciona às 2 da manhã quando você mais precisa.</h2>
-        <p class="aurora-sub">Quando a terapia não está disponível. Quando você não pode ligar pra ninguém. Quando precisa entender o que tá sentindo agora, não na semana que vem.</p>
-        <p class="aurora-texto">A Aurora é uma inteligência artificial treinada neste método. Ela não julga. Não diagnostica. Não manda você fazer nada. Ela faz as perguntas certas pra você chegar na resposta sozinha:</p>
-        <ul class="aurora-perguntas">
-          <li>O que você tá sentindo é culpa real, ou pressão emocional disfarçada de culpa?</li>
-          <li>Você tá voltando atrás porque mudou de ideia, ou porque o desconforto da outra pessoa ficou grande demais?</li>
-          <li>Essa decisão é sua, ou você tá tomando ela pra agradar alguém?</li>
-        </ul>
-        <div class="aurora-privacidade">Só você tem acesso ao que conversa com ela. Ninguém mais vê. Ninguém mais sabe. Disponível 24h. Acesso ilimitado. Pra sempre.</div>
-        <p class="aurora-nenhum">Nenhum livro faz isso. Nenhum curso faz isso. Nenhuma amiga está disponível às 3 da manhã sem julgamento.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ PRODUTO ══ -->
-<section class="secao-produto">
+<!-- ══════════════════════════════
+     4. QUÉ INCLUYE
+     ══════════════════════════════ -->
+<section class="section-inc">
   <div class="container">
-    <div class="produto-badge">Como funciona</div>
-    <h2 class="produto-titulo">Tudo no seu celular. Pronto pra usar agora.</h2>
-    <p class="produto-subtitulo">O ClaraMente é um app que funciona direto no navegador do seu celular. Sem baixar nada na App Store. Sem criar conta. Você salva o atalho na tela inicial e abre em segundos.</p>
-    <div class="grid-pilares">
-      <div class="card-pilar">
-        <span class="card-pilar-emoji">📖</span>
-        <div class="card-pilar-titulo">Livro "Pare de Ser Explorada"</div>
-        <p class="card-pilar-desc">7 capítulos. Um por dia. Cada capítulo explica o que está acontecendo naquele dia da sua jornada, em linguagem simples, sem termos técnicos.</p>
-      </div>
-      <div class="card-pilar">
-        <span class="card-pilar-emoji">🗺️</span>
-        <div class="card-pilar-titulo">Mapa dos 7 Dias — Método C.L.A.R.A.</div>
-        <p class="card-pilar-desc">Um plano claro do que fazer em cada dia. Sem dúvida de por onde começar. Cinco minutos no ônibus ou dez minutos antes de dormir já são suficientes.</p>
+    <span class="label">¿Qué incluye El Mapa Sagrado?</span>
+    <div class="div-gold"></div>
+    <h2>Una biblioteca espiritual completa</h2>
+    <p class="inc-sub">5 materiales principales. Todo en un solo acceso.</p>
+  </div>
+
+  <div class="prod-list">
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa El Mapa Sagrado — libro con mapa ilustrado, tonos tierra y dorados, estilo cartográfico antiguo. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>El Mapa Sagrado<br>capa principal</div>
+      <div class="prod-body">
+        <h4>El Mapa Sagrado<br>Estudio Visual Completo</h4>
+        <p>La guía central. Cada libro, cada capítulo, cada pasaje. Visual, claro, ordenado.</p>
       </div>
     </div>
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa 170 Bosquejos de Josué — Josué frente al Jordán, luz dorada, épico. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>170 Bosquejos<br>de Josué</div>
+      <div class="prod-body">
+        <h4>170 Bosquejos<br>del Libro de Josué</h4>
+        <p>El libro completo. Cap. 1 al 24. 170 estudios con enseñanza, aplicación y oración.</p>
+      </div>
+    </div>
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa Génesis — amanecer sobre tierra oscura, rayo de luz, tonos dorados. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>Génesis<br>Estudio Visual</div>
+      <div class="prod-body">
+        <h4>Génesis — Estudio Visual</h4>
+        <p>Cap. 1 al 9. La promesa de salvación que ya estaba escrita desde el principio. ~58 slides.</p>
+      </div>
+    </div>
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa Éxodo — Moisés frente al mar, nubes dramáticas, tonos azul y dorado. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>Éxodo<br>Estudio Visual</div>
+      <div class="prod-body">
+        <h4>Éxodo — Estudio Visual</h4>
+        <p>Cap. 1 al 7. La imagen del cordero que Pablo citó siglos después para explicar a Cristo. ~57 slides.</p>
+      </div>
+    </div>
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa Levítico — sacerdote en el Tabernáculo, luz sagrada, tonos dorados y violeta. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>Levítico<br>Estudio Visual</div>
+      <div class="prod-body">
+        <h4>Levítico — Estudio Visual</h4>
+        <p>Cap. 1 al 10. El libro más ignorado. El que más explica por qué la Cruz era necesaria. ~57 slides.</p>
+      </div>
+    </div>
+
+    <div class="prod-item">
+      <!-- PLACEHOLDER: Imagen capa 30 Días de Oración — persona orando al amanecer, luz cálida. 160x160px -->
+      <div class="prod-img">PLACEHOLDER<br>30 Días<br>de Oración</div>
+      <div class="prod-body">
+        <h4>30 Días de Oración<br>Versículos del Pentateuco</h4>
+        <p>30 devocionales completos. Un mes conectando con la base de toda la Escritura.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container" style="margin-top:28px;">
+    <a href="https://almadigital.pro/" class="btn">Quiero comprender la Biblia</a>
+    <span class="btn-sub">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ MOCKUPS ══ -->
-<section class="secao-mockups">
-  <div class="container-wide">
-    <div class="bloco-mockup">
-      <div class="mockup-placeholder">
-        <div class="mockup-placeholder-texto">Mockup Principal 1<br>(tela home)</div>
-      </div>
-      <div>
-        <h3 class="mockup-titulo">Tudo em um lugar.<br>Acessível em segundos.</h3>
-        <div class="divisor divisor-left"></div>
-        <p class="mockup-texto">Quando a situação chega, você não tem tempo pra procurar o que fazer. A tela inicial do ClaraMente foi pensada pra isso. Um toque e você está dentro. O que você precisa está a dois cliques de distância.</p>
-      </div>
-    </div>
-    <div class="bloco-mockup invertido">
-      <div class="mockup-placeholder">
-        <div class="mockup-placeholder-texto">Mockup Áudios<br>(player)</div>
-      </div>
-      <div>
-        <h3 class="mockup-titulo">Seis minutos antes de entrar numa conversa difícil.</h3>
-        <div class="divisor divisor-left"></div>
-        <p class="mockup-texto">Os áudios foram feitos pra momentos específicos. Antes de falar algo importante. Depois de um momento que saiu errado. Quando você precisa de clareza rápida e não tem tempo pra ler.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ RESULTADOS TANGÍVEIS (NOVO — não existia) ══ -->
-<section class="secao-resultados">
+<!-- ══════════════════════════════
+     5. MAPA DE LOS 12 CÓDIGOS
+     ══════════════════════════════ -->
+<section class="section-mapa">
   <div class="container">
-    <h2 class="secao-titulo" style="color:var(--branco); text-align:center;">O que você vai ser capaz de fazer depois dos 7 dias</h2>
-    <div class="divisor"></div>
-    <p class="resultados-intro">Não é sobre "clareza" no sentido abstrato. É sobre ações concretas que você hoje evita ou não consegue sustentar.</p>
-    <div class="grid-resultados">
-      <div class="card-resultado">
-        <div class="resultado-numero">Resultado 1</div>
-        <div class="resultado-titulo">Colocar um limite e não voltar atrás</div>
-        <p class="resultado-desc">Você vai saber o que fazer quando a pressão começar. Não vai precisar improvisar nem calcular a reação de ninguém.</p>
-      </div>
-      <div class="card-resultado">
-        <div class="resultado-numero">Resultado 2</div>
-        <div class="resultado-titulo">Sair de uma conversa difícil sabendo o que aconteceu</div>
-        <p class="resultado-desc">Você vai parar de ruminar por horas depois de uma discussão. Vai entender o mecanismo enquanto ele acontece.</p>
-      </div>
-      <div class="card-resultado">
-        <div class="resultado-numero">Resultado 3</div>
-        <div class="resultado-titulo">Tomar decisões pelo que quer, não pelo que é permitido querer</div>
-        <p class="resultado-desc">O plano que ficou parado por causa da reação de alguém. O emprego. O curso. A conversa que você vem adiando.</p>
-      </div>
-      <div class="card-resultado">
-        <div class="resultado-numero">Resultado 4</div>
-        <div class="resultado-titulo">Falar o que precisa falar sem se sentir culpada depois</div>
-        <p class="resultado-desc">Você vai ter as palavras certas na hora certa. E vai conseguir sustentar o que disse sem desfazer nas primeiras horas.</p>
+    <span class="label">Incluido en el Mapa Sagrado</span>
+    <div class="div-gold" style="background:rgba(184,134,11,0.4);"></div>
+
+    <h2>El Mapa de los 12 Códigos</h2>
+    <p class="mapa-sub">Una jornada de transformación espiritual. Visual. Completa. Paso a paso.</p>
+
+    <!-- SUSTITUIR por: <img src="mapa_12_codigos.png" style="width:100%;max-width:480px;margin:0 auto 24px;display:block;border-radius:6px;"> -->
+    <div class="mapa-img-wrap">
+      <div class="mapa-placeholder">
+        <span>IMAGEN<br>El Mapa: Una Jornada de<br>Transformación Espiritual<br>Insertar imagen real aquí</span>
       </div>
     </div>
-    <p class="resultados-fechamento">Não é sobre ser uma pessoa diferente.<br>É sobre <strong>parar de agir no automático.</strong></p>
+
+    <div class="mapa-codes">
+      <div class="code-item"><span class="code-num">01</span><span class="code-name">Fe</span><span class="code-desc">Creer sin ver.</span></div>
+      <div class="code-item"><span class="code-num">02</span><span class="code-name">Palabra</span><span class="code-desc">Declarar lo que Dios dice.</span></div>
+      <div class="code-item"><span class="code-num">03</span><span class="code-name">Gratitud</span><span class="code-desc">Cambiar tu frecuencia espiritual.</span></div>
+      <div class="code-item"><span class="code-num">04</span><span class="code-name">Amor</span><span class="code-desc">Elegir amar como decisión.</span></div>
+      <div class="code-item"><span class="code-num">05</span><span class="code-name">Perdón</span><span class="code-desc">Liberarte del pasado para avanzar.</span></div>
+      <div class="code-item"><span class="code-num">06</span><span class="code-name">Siembra y Cosecha</span><span class="code-desc">Todo lo que das, se multiplica.</span></div>
+      <div class="code-item"><span class="code-num">07</span><span class="code-name">Propósito</span><span class="code-desc">Descubrir para qué fuiste creada.</span></div>
+      <div class="code-item"><span class="code-num">08</span><span class="code-name">Desierto</span><span class="code-desc">Las temporadas secas te forman.</span></div>
+      <div class="code-item"><span class="code-num">09</span><span class="code-name">Sabiduría</span><span class="code-desc">Decisiones con discernimiento divino.</span></div>
+      <div class="code-item"><span class="code-num">10</span><span class="code-name">Obediencia</span><span class="code-desc">Actuar aunque no entiendas todo.</span></div>
+      <div class="code-item"><span class="code-num">11</span><span class="code-name">Paciencia</span><span class="code-desc">Confiar en el proceso sin desesperar.</span></div>
+      <div class="code-item"><span class="code-num">12</span><span class="code-name">Tiempo de Dios</span><span class="code-desc">Rendirte al calendario divino.</span></div>
+    </div>
+
+    <a href="https://almadigital.pro/" class="btn" style="max-width:380px;">Quiero el Mapa completo</a>
+    <span class="btn-sub" style="color:#666;">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ BÔNUS ══ -->
-<section class="secao-bonus">
-  <div class="container-wide">
-    <p class="bonus-pre">Incluídos no seu acesso</p>
-    <h2 class="secao-titulo">Bônus que aceleram o resultado</h2>
-    <div class="divisor"></div>
-    <p class="secao-subtitulo">Além do livro, do mapa e da Aurora IA, você também recebe acesso a tudo isso.</p>
-    <div class="grid-bonus">
-      <div class="card-bonus">
-        <span class="card-bonus-emoji">✅</span>
-        <div class="card-bonus-titulo">10 Checklists — Respostas na Hora Certa</div>
-        <p class="card-bonus-desc">Quando você não sabe se está exagerando, se deve voltar atrás, você abre um checklist. 12 perguntas. Resposta personalizada pro seu score.</p>
-        <div class="card-bonus-valor">Valor: R$47</div>
-      </div>
-      <div class="card-bonus">
-        <span class="card-bonus-emoji">💬</span>
-        <div class="card-bonus-titulo">Scripts Prontos — O Que Falar Quando a Cabeça Esvazia</div>
-        <p class="card-bonus-desc">As palavras exatas pra momentos em que você sabe o que sente mas não sabe como dizer. Você não precisa criar do zero na hora mais difícil.</p>
-        <div class="card-bonus-valor">Valor: R$47</div>
-      </div>
-      <div class="card-bonus">
-        <span class="card-bonus-emoji">🎧</span>
-        <div class="card-bonus-titulo">5 Áudios Guiados — Clareza em Minutos</div>
-        <p class="card-bonus-desc">Pra ouvir antes de uma conversa difícil, depois de um momento que saiu errado, ou quando você só precisa de uma âncora. Curtos. Diretos.</p>
-        <div class="card-bonus-valor">Valor: R$67</div>
-      </div>
-    </div>
-    <p class="bonus-total">Total em bônus: <strong>R$161</strong> — incluídos no seu acesso.</p>
-  </div>
-</section>
 
-<!-- ══ MAPA 7 DIAS ══ -->
-<section class="secao-mapa">
+<!-- ══════════════════════════════
+     6. QUIÉN PUEDE USARLO
+     ══════════════════════════════ -->
+<section class="section-quien-usa">
   <div class="container">
-    <h2 class="secao-titulo">Como os 7 dias funcionam na prática</h2>
-    <div class="divisor"></div>
-    <p class="secao-subtitulo">Cada dia tem um foco, uma ferramenta e um resultado concreto esperado.</p>
-    <div class="grid-dias">
-      <div class="dia-item"><div class="dia-numero">1</div><div class="dia-conteudo"><div class="dia-titulo">C de Clareza</div><p class="dia-descricao">Você entende o mecanismo por trás do que está acontecendo. O livro explica o ciclo. O checklist confirma se ele está presente na sua vida.</p><p class="dia-resultado">Você sai do Dia 1 sabendo o que está acontecendo — não como achismo, como mecanismo.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">2</div><div class="dia-conteudo"><div class="dia-titulo">L de Leitura</div><p class="dia-descricao">Você aprende a ler os sinais antes de a situação escalar. Os infográficos mostram os padrões que você provavelmente já viveu mas não sabia nomear.</p><p class="dia-resultado">Você consegue identificar a pressão chegando antes de reagir no automático.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">3</div><div class="dia-conteudo"><div class="dia-titulo">A de Ação</div><p class="dia-descricao">O primeiro movimento real. Os scripts te dão as palavras. Os áudios te preparam antes.</p><p class="dia-resultado">Você faz a primeira ação diferente. Com as palavras certas. Sem improvisar.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">4</div><div class="dia-conteudo"><div class="dia-titulo">R de Resistência</div><p class="dia-descricao">O momento mais difícil. Quando você coloca um limite e a pressão começa. Esse dia existe exatamente pra isso.</p><p class="dia-resultado">Você sabe o que fazer quando a cabeça esvazia. E não volta atrás.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">5</div><div class="dia-conteudo"><div class="dia-titulo">A de Autonomia</div><p class="dia-descricao">Você começa a tomar decisões pelo que quer, não pelo que é permitido querer. A Aurora está disponível se você precisar pensar em voz alta.</p><p class="dia-resultado">Você toma uma decisão que é sua. Só sua.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">6</div><div class="dia-conteudo"><div class="dia-titulo">Consolidação</div><p class="dia-descricao">O que mudou. O que ainda resiste. Onde aplicar o que você aprendeu nas situações concretas da sua vida.</p><p class="dia-resultado">Você consegue ver o padrão acontecendo em tempo real — e escolher como reagir.</p></div></div>
-      <div class="dia-item"><div class="dia-numero">7</div><div class="dia-conteudo"><div class="dia-titulo">Modo Manutenção</div><p class="dia-descricao">O método não acaba no Dia 7. Ele vira rotina. Você sabe quais ferramentas usar em cada tipo de situação.</p><p class="dia-resultado">Você tem um sistema. Não precisa mais reagir no escuro.</p></div></div>
-    </div>
-    <p class="mapa-fechamento"><strong>Sete dias</strong> pra entender o que está acontecendo. Uma vida pra usar o que você aprendeu.</p>
-  </div>
-</section>
+    <span class="label">¿Quién puede usarlo?</span>
+    <div class="div-gold" style="background:rgba(184,134,11,0.4);"></div>
+    <h2>Para cualquier creyente<br>que quiera entender más</h2>
 
-<!-- ══ DEPOIMENTOS ══ -->
-<section class="secao-depoimentos">
-  <div class="container-wide">
-    <h2 class="secao-titulo" style="text-align:center;">O que outras mulheres encontraram aqui</h2>
-    <div class="divisor"></div>
-    <p class="secao-subtitulo" style="color:rgba(255,255,255,0.45); margin-bottom:48px;">Situações diferentes. Mesmo padrão. Mesmo resultado.</p>
-    <div class="grid-depoimentos">
-      <div class="card-depoimento">
-        <div class="estrelas">★★★★★</div>
-        <p class="depoimento-texto">"Eu passei 44 anos achando que eu era sensível demais. Que eu exagerava. Que o problema era meu temperamento. Quando eu vi o resultado do checklist eu fiquei parada olhando pra tela por uns dois minutos. Não era temperamento. Era um padrão. E eu nunca tinha conseguido ver isso porque estava dentro dele."</p>
-        <div class="depoimento-autor">Fernanda, 44 anos</div>
-      </div>
-      <div class="card-depoimento">
-        <div class="estrelas">★★★★★</div>
-        <p class="depoimento-texto">"Eu comprei achando que ia ser mais uma coisa que eu começaria e não terminaria. No segundo dia eu parei no meio de um capítulo e fui chorar no banheiro. Não de tristeza. De alívio. Porque alguém finalmente descreveu exatamente o que eu vivo, com as palavras exatas, sem me chamar de vítima."</p>
-        <div class="depoimento-autor">Myrella, 27 anos</div>
-      </div>
-      <div class="card-depoimento">
-        <div class="estrelas">★★★★★</div>
-        <p class="depoimento-texto">"O que me pegou foi a Aurora. Eram quase meia-noite, eu tinha acabado de ter uma discussão, e eu não queria acordar ninguém. Ela me fez três perguntas. Três. E eu entendi o que tinha acontecido antes de terminar de responder a terceira. Nunca tinha conseguido fazer isso sozinha tão rápido."</p>
-        <div class="depoimento-autor">Camila, 38 anos</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="uso-list">
 
-<!-- ══ AUTORIDADE ══ -->
-<section class="secao-autoridade">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:48px;">
-      <h2 class="secao-titulo">Quem criou o ClaraMente</h2>
-      <div class="divisor"></div>
-    </div>
-    <div class="autoridade-box">
-      <div class="autoridade-foto">
-        <div class="autoridade-foto-texto">Foto da<br>criadora</div>
-      </div>
-      <div>
-        <p class="autoridade-pre">A criadora do método</p>
-        <div class="autoridade-nome">Clara</div>
-        <p class="autoridade-credencial">Especialista em comportamento emocional · Criadora do Método C.L.A.R.A.</p>
-        <p class="autoridade-texto">Durante anos, eu cedi em situações onde não queria ceder. Voltei atrás de decisões que eram certas. Fiz planos que nunca saíram do papel por causa da reação de pessoas próximas. Quando eu entendi o mecanismo por trás desse padrão, criei o Método C.L.A.R.A. — não pra ter as respostas de cabeça, mas pra ter as ferramentas certas no momento em que a pressão chega.</p>
-        <div class="autoridade-numeros">
-          <div class="autoridade-num"><span class="autoridade-num-valor">9.680+</span><span class="autoridade-num-label">relatos analisados</span></div>
-          <div class="autoridade-num"><span class="autoridade-num-valor">7</span><span class="autoridade-num-label">anos de pesquisa</span></div>
-          <div class="autoridade-num"><span class="autoridade-num-valor">1</span><span class="autoridade-num-label">método comprovado</span></div>
+      <div class="uso-item">
+        <!--
+        PROMPT NANO BANANA — Profesores y Pastores:
+        Candid photo of a Latin American man in his 40s, warm natural expression, sitting at a wooden table with an open Bible and handwritten notes, simple home or church setting, warm lamplight, earthy tones, photojournalism style, 35mm, shallow depth of field, no filters, authentic and unpretentious.
+        -->
+        <div class="uso-foto">FOTO<br>Pastor / Profesor<br>ver prompt</div>
+        <div class="uso-body">
+          <h4>Profesores y Pastores</h4>
+          <p>Material listo para clases, prédicas y discipulado. 170 estudios de Josué para usar de inmediato.</p>
         </div>
       </div>
+
+      <div class="uso-item">
+        <!--
+        PROMPT NANO BANANA — Estudiantes y nuevos creyentes:
+        Candid photo of a young Latin American woman, early 20s, sitting cross-legged on a couch or bed with a Bible open on her lap, looking thoughtful, natural daylight from a window, casual clothing, cozy home setting, warm tones, authentic and unposed, 35mm lens feel, no filters.
+        -->
+        <div class="uso-foto">FOTO<br>Estudiante<br>ver prompt</div>
+        <div class="uso-body">
+          <h4>Estudiantes y nuevos creyentes</h4>
+          <p>Empieza desde cero sin perderte. Visual, claro, sin jerga teológica.</p>
+        </div>
+      </div>
+
+      <div class="uso-item">
+        <!--
+        PROMPT NANO BANANA — Líderes de célula o grupos pequeños:
+        Candid photo of a small group of 3-4 Latin American women, ages 30-55, sitting in a circle in a simple living room, each with a Bible or notebook, laughing or in animated conversation, warm natural light, authentic community feel, no studio look, documentary style.
+        -->
+        <div class="uso-foto">FOTO<br>Grupo pequeño<br>ver prompt</div>
+        <div class="uso-body">
+          <h4>Líderes de célula o grupos pequeños</h4>
+          <p>Contenido profundo y ordenado para cada reunión. Sin tener que preparar horas antes.</p>
+        </div>
+      </div>
+
+      <div class="uso-item">
+        <!--
+        PROMPT NANO BANANA — Familias:
+        Candid photo of a Latin American mother and her two children, ages 8-14, sitting together on a sofa reading from a colorful illustrated Bible or book, warm afternoon light, home setting, genuine interaction, one child pointing at the page, cozy and real, no commercial stock photo feel.
+        -->
+        <div class="uso-foto">FOTO<br>Familia<br>ver prompt</div>
+        <div class="uso-body">
+          <h4>Familias</h4>
+          <p>Historias bíblicas con aplicación familiar. Para enseñar a tus hijos de forma visual y memorable.</p>
+        </div>
+      </div>
+
     </div>
+
+    <a href="https://almadigital.pro/" class="btn" style="max-width:380px;margin-top:4px;">Sí, quiero aprender</a>
+    <span class="btn-sub" style="color:#666;">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ PARA QUEM É ══ -->
-<section class="secao-para-quem">
+
+<!-- ══════════════════════════════
+     7. BONOS
+     ══════════════════════════════ -->
+<section class="section-bon">
   <div class="container">
-    <h2 class="secao-titulo">O ClaraMente é pra você?</h2>
-    <div class="divisor"></div>
-    <div class="grid-para-quem">
-      <div class="card-para-quem sim">
-        <h3>Para quem é ✅</h3>
-        <ul class="lista-para-quem">
-          <li>Você tem planos que ficam adiados por causa da reação de alguém próximo</li>
-          <li>Você coloca um limite e volta atrás nas primeiras horas</li>
-          <li>Você sai de conversas difíceis sem entender direito o que aconteceu</li>
-          <li>Você reconhece que a vida que construiu parece mais com o que os outros esperavam do que com o que você queria</li>
-          <li>Você já buscou respostas sozinha, em silêncio, porque não consegue falar sobre isso com ninguém próximo</li>
-          <li>Você não quer destruir nenhuma relação. Você só quer parar de se perder dentro delas.</li>
-        </ul>
+    <span class="label">¡Bonos exclusivos por tiempo limitado!</span>
+    <div class="div-gold"></div>
+    <h2>5 regalos exclusivos.<br>Gratis. Solo por hoy.</h2>
+    <p class="bon-intro">Al adquirir El Mapa Sagrado hoy, recibirás totalmente gratis estos 5 materiales:</p>
+
+    <div class="bon-list">
+
+      <div class="bon-item">
+        <!-- PLACEHOLDER: Portada Los 10 Mandamientos — tablas de piedra, Monte Sinaí, tonos oscuros. 52x68px -->
+        <div class="bon-img">PORTADA<br>Bono 1</div>
+        <div class="bon-body">
+          <span class="bon-tag">Bono 1</span>
+          <div class="bon-title">Los 10 Mandamientos: Historia y Aplicación Espiritual</div>
+          <p class="bon-desc">El Monte Sinaí. El significado real de cada mandamiento. La conexión con Cristo.</p>
+          <div class="bon-price"><span class="pstrike">$10 USD</span><span class="pfree">Gratis</span></div>
+        </div>
       </div>
-      <div class="card-para-quem nao">
-        <h3>Para quem não é ❌</h3>
-        <ul class="lista-para-quem">
-          <li>Você está em uma situação de violência física</li>
-          <li>Você está buscando um diagnóstico ou acompanhamento clínico</li>
-          <li>Você quer uma solução que funcione sem nenhum envolvimento da sua parte</li>
-          <li>Você acredita que o problema está 100% na outra pessoa e nada precisa mudar em você</li>
-        </ul>
+
+      <div class="bon-item">
+        <!-- PLACEHOLDER: Portada Los 25 Milagros de Jesús — silueta de Cristo, luz. 52x68px -->
+        <div class="bon-img">PORTADA<br>Bono 2</div>
+        <div class="bon-body">
+          <span class="bon-tag">Bono 2</span>
+          <div class="bon-title">Los 25 Milagros de Jesús</div>
+          <p class="bon-desc">De Caná a la pesca post-resurrección. Contexto, reflexión y aplicación en cada uno.</p>
+          <div class="bon-price"><span class="pstrike">$10 USD</span><span class="pfree">Gratis</span></div>
+        </div>
       </div>
+
+      <div class="bon-item">
+        <!-- PLACEHOLDER: Portada Historias Bíblicas — familia leyendo, tonos cálidos. 52x68px -->
+        <div class="bon-img">PORTADA<br>Bono 3</div>
+        <div class="bon-body">
+          <span class="bon-tag">Bono 3</span>
+          <div class="bon-title">Historias Bíblicas para Toda la Familia</div>
+          <p class="bon-desc">Selección del AT y NT con relato, enseñanza y actividad. Para casa o iglesia.</p>
+          <div class="bon-price"><span class="pstrike">$10 USD</span><span class="pfree">Gratis</span></div>
+        </div>
+      </div>
+
+      <div class="bon-item">
+        <!-- PLACEHOLDER: Portada Devocionales de Poder — persona en oración, luz suave. 52x68px -->
+        <div class="bon-img">PORTADA<br>Bono 4</div>
+        <div class="bon-body">
+          <span class="bon-tag">Bono 4</span>
+          <div class="bon-title">Devocionales de Poder: 30 Días para Profundizar tu Fe</div>
+          <p class="bon-desc">30 devocionales completos. Versículo, reflexión, oración, desafío diario.</p>
+          <div class="bon-price"><span class="pstrike">$10 USD</span><span class="pfree">Gratis</span></div>
+        </div>
+      </div>
+
+      <div class="bon-item">
+        <!-- PLACEHOLDER: Portada Cómo Leer la Biblia — libro abierto con luz. 52x68px -->
+        <div class="bon-img">PORTADA<br>Bono 5</div>
+        <div class="bon-body">
+          <span class="bon-tag">Bono 5</span>
+          <div class="bon-title">Cómo Leer e Interpretar la Biblia — Guía para Principiantes</div>
+          <p class="bon-desc">Contexto histórico, tipos de texto, errores comunes, métodos prácticos. Sin jerga.</p>
+          <div class="bon-price"><span class="pstrike">$10 USD</span><span class="pfree">Gratis</span></div>
+        </div>
+      </div>
+
     </div>
-    <p class="para-quem-fechamento">Se você se reconheceu no primeiro card, o ClaraMente foi feito pra você.<br>Se você se reconheceu no segundo, eu prefiro ser honesta agora do que te ver frustrada depois.</p>
+
+    <p style="font-family:'Playfair Display',serif;font-size:18px;color:var(--dark-mid);margin-top:24px;font-weight:700;">🎉 Todo esto valorado en más de $49 USD...</p>
+    <p style="font-size:14px;color:#7A5535;margin-top:4px;margin-bottom:20px;">Totalmente <strong>gratis</strong> solo por tiempo limitado.</p>
+
+    <a href="https://almadigital.pro/" class="btn">Quiero los bonos</a>
+    <span class="btn-sub">$6,90 USD · Acceso inmediato</span>
   </div>
 </section>
 
-<!-- ══ AGITAÇÃO REFORÇO (NOVO — antes do preço) ══ -->
-<section class="secao-agitacao-reforco">
+
+<!-- ══════════════════════════════
+     8. REATIVAÇÃO DE DOR
+     ══════════════════════════════ -->
+<section class="section-react">
   <div class="container">
-    <h2 class="agitacao-reforco-titulo">O custo de não agir não aparece de uma vez.</h2>
-    <div class="divisor"></div>
-    <div class="agitacao-reforco-texto">
-      <p>Hoje você engole o que queria falar. Amanhã você adia mais um plano. Semana que vem você cede de novo sem perceber.</p>
-      <p>E daqui a um ano, você olha pra trás e percebe que construiu uma vida que parece mais com o que os outros esperavam do que com o que você queria.</p>
-      <p>Não é porque você é fraca. É porque o padrão continua funcionando enquanto você não vê.</p>
-    </div>
-    <p class="agitacao-reforco-destaque">O ClaraMente não resolve tudo. Mas resolve o momento que decide tudo: a hora que a pressão chega.</p>
+    <h3>
+      ¿Te has sentido <em>perdida</em><br>al leer la Biblia?
+    </h3>
+    <p>No era tu culpa. Faltaba el mapa.</p>
+    <p class="proof">+4.000 creyentes ya lo encontraron.</p>
+
+    <a href="https://almadigital.pro/" class="btn" style="max-width:360px;">Quiero los bonos</a>
+    <span class="btn-sub">$6,90 USD · Un solo pago</span>
   </div>
 </section>
 
-<!-- ══ STACK + PREÇO (reestruturado: Core + Bônus) ══ -->
-<section class="secao-preco">
+
+<!-- ══════════════════════════════
+     9. PRECIO
+     ══════════════════════════════ -->
+<section class="section-price">
   <div class="container">
-    <h2 class="secao-titulo">Tudo isso por quanto?</h2>
-    <div class="divisor"></div>
-    <ul class="stack-lista">
-      <li>
-        <div class="stack-nome"><span>📱</span><span>App ClaraMente — acesso vitalício <span class="stack-tag-core">core</span></span></div>
-        <span class="stack-valor-riscado">R$97</span>
-      </li>
-      <li>
-        <div class="stack-nome"><span>📖</span><span>Livro "Pare de Ser Explorada" — 7 passos <span class="stack-tag-core">core</span></span></div>
-        <span class="stack-valor-riscado">R$67</span>
-      </li>
-      <li>
-        <div class="stack-nome"><span>🤖</span><span>Aurora IA — Confidente 24h, ilimitada <span class="stack-tag-core">core</span></span></div>
-        <span class="stack-valor-riscado">R$197</span>
-      </li>
-      <li>
-        <div class="stack-nome"><span>✅</span><span>10 Checklists Interativos <span class="stack-tag-bonus">bônus</span></span></div>
-        <span class="stack-valor-riscado">R$47</span>
-      </li>
-      <li>
-        <div class="stack-nome"><span>💬</span><span>Scripts de Conversa <span class="stack-tag-bonus">bônus</span></span></div>
-        <span class="stack-valor-riscado">R$47</span>
-      </li>
-      <li>
-        <div class="stack-nome"><span>🎧</span><span>5 Áudios Guiados <span class="stack-tag-bonus">bônus</span></span></div>
-        <span class="stack-valor-riscado">R$67</span>
-      </li>
-    </ul>
-    <p class="total-riscado">Valor total: <span>R$522</span></p>
-    <div class="preco-destaque">
-      <p class="preco-por">Tudo isso por apenas</p>
-      <div class="preco-valor">R$97</div>
-      <p class="preco-parcelamento">ou 12x de R$10,03</p>
-      <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
-      <p class="micro-copy" style="color:rgba(255,255,255,0.35);">🔒 Pagamento seguro · Acesso imediato · Garantia de 7 dias</p>
-      <p class="preco-ancoragem">Pagamento único. Sem mensalidade. Sem renovação automática. Acesso vitalício.<br><br>R$97 é menos do que uma única sessão de terapia. E o ClaraMente está disponível nos momentos em que a terapia não está.</p>
-    </div>
-    <div class="urgencia-bloco">
-      <p>⏳ <strong>Preço de lançamento:</strong> O ClaraMente acabou de ser lançado. O valor de R$97 com todos os bônus é válido apenas enquanto o contador acima estiver ativo. Depois o preço sobe para R$147.</p>
+    <span class="label" style="color:var(--gold);">Precio especial de lanzamiento</span>
+
+    <div class="price-wrap">
+
+      <!-- PLACEHOLDER: Mockup escuro com todos os materiais + estrelas + preço "$6,90 USD". 440x280px -->
+      <div class="price-mockup">
+        <span>PLACEHOLDER<br>Mockup escuro com todos os materiais<br>+ estrelas + preço $6,90 USD<br>Substituir por imagem real</span>
+      </div>
+
+      <p class="price-headline">¡Llévate TODO esto por solo</p>
+      <div class="price-val-row">
+        <p class="price-was">Valorado en más de $99 USD</p>
+        <div class="price-val"><span>$</span>6,90</div>
+      </div>
+      <p class="price-detail">USD · Un solo pago · Sin mensualidades · Acceso de por vida</p>
+      <p style="font-size:13px;color:#9A8070;margin-bottom:16px;">(Puedes pagar en tu moneda local)</p>
+
+      <p style="font-family:'Playfair Display',serif;font-size:15px;color:var(--white);margin-bottom:12px;">Al acceder hoy a El Mapa Sagrado, recibirás:</p>
+
+      <ul class="stack">
+        <li><span>✅ El Mapa Sagrado — Estudio Visual</span><span class="iprice">$24</span></li>
+        <li><span>✅ 170 Bosquejos de Josué (Completo)</span><span class="iprice">$19</span></li>
+        <li><span>✅ Génesis — Estudio Visual</span><span class="iprice">$12</span></li>
+        <li><span>✅ Éxodo — Estudio Visual</span><span class="iprice">$12</span></li>
+        <li><span>✅ Levítico — Estudio Visual</span><span class="iprice">$12</span></li>
+        <li><span>✅ 30 Días de Oración</span><span class="iprice">$10</span></li>
+        <li><span>🎁 Bono 1: Los 10 Mandamientos</span><span class="iprice">$10</span></li>
+        <li><span>🎁 Bono 2: Los 25 Milagros de Jesús</span><span class="iprice">$10</span></li>
+        <li><span>🎁 Bono 3: Historias Bíblicas Familiares</span><span class="iprice">$10</span></li>
+        <li><span>🎁 Bono 4: Devocionales de Poder</span><span class="iprice">$10</span></li>
+        <li><span>🎁 Bono 5: Cómo Leer la Biblia</span><span class="iprice">$10</span></li>
+        <li><span>🔒 Acceso seguro · 100% digital</span><span></span></li>
+        <li><span>📱 Compatible con cualquier dispositivo</span><span></span></li>
+      </ul>
+
+      <div class="stack-total">Valor total: +$129 USD → Solo $6,90 hoy</div>
+
+      <p style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:12px;">Oferta limitada · Últimos cupos disponibles</p>
+
+      <a href="https://almadigital.pro/" class="btn">Quiero El Mapa Sagrado →</a>
+      <p style="font-size:12px;color:#666;margin-top:8px;">📧 Entrega inmediata al correo electrónico</p>
     </div>
   </div>
 </section>
 
-<!-- ══ GARANTIA ══ -->
-<section class="secao-garantia">
+
+<!-- ══════════════════════════════
+     10. GARANTIA
+     ══════════════════════════════ -->
+<section class="section-gar">
   <div class="container">
-    <div class="garantia-box">
-      <span class="garantia-icone">🛡️</span>
-      <h2 class="garantia-titulo">Garantia incondicional de 7 dias</h2>
-      <p class="garantia-texto">Você tem 7 dias pra acessar tudo, usar as ferramentas, conversar com a Aurora, ouvir os áudios, ler o livro.</p>
-      <p class="garantia-texto">Se em qualquer momento dentro desses 7 dias você sentir que não era o que precisava, por qualquer motivo, eu devolvo tudo. Sem perguntas. Sem burocracia. Sem precisar explicar nada.</p>
-      <p class="garantia-texto" style="font-weight:500; color:var(--navy);">O risco é meu. Não seu.</p>
-      <p class="garantia-texto">Você não está apostando R$97. Você está testando por 7 dias com a certeza de que, se não funcionar, o dinheiro volta.</p>
-      <p class="garantia-destaque">O único risco real aqui é continuar sem isso.</p>
+    <div class="gar-top">
+      <div class="gar-badge"><span class="gnum">7</span><span>días</span></div>
+      <div class="gar-text">
+        <h2>Garantía Incondicional<br>de 7 Días</h2>
+        <p>¿Aún tienes dudas? Tu compra está 100% protegida.</p>
+      </div>
     </div>
+    <p>Si el contenido no cumple lo prometido, tienes 7 días para solicitar el reembolso completo. Sin preguntas.</p>
+    <p class="gar-detail">Tu acceso es de por vida. Nuevos materiales se añaden sin costo adicional.</p>
   </div>
 </section>
 
-<!-- ══ FAQ ══ -->
-<section class="secao-faq">
+
+<!-- ══════════════════════════════
+     11. FAQ
+     ══════════════════════════════ -->
+<section class="section-faq">
   <div class="container">
-    <h2 class="secao-titulo" style="text-align:center; margin-bottom:16px;">Perguntas frequentes</h2>
-    <div class="divisor"></div><br>
-    <div class="faq-lista">
+    <span class="label">Preguntas frecuentes</span>
+    <div class="div-gold"></div>
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">Funciona no iPhone e no Android?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Sim. O ClaraMente é um app que funciona direto no navegador do seu celular, sem precisar baixar nada. iPhone, Android, qualquer modelo. Você acessa pelo link, salva na tela inicial, e ele fica lá como qualquer app normal.</p>
+        <button class="faq-q" onclick="toggleFaq(this)">¿Cómo recibiré el material después de la compra?<span class="faq-arr">▼</span></button>
+        <div class="faq-a">Al confirmar el pago, recibes un correo con acceso inmediato. 100% online. Cualquier dispositivo.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">Preciso ter conhecimento em psicologia ou autoajuda pra usar?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Não. O ClaraMente foi feito pra funcionar sem nenhum conhecimento prévio. A linguagem é simples. As ferramentas são diretas. Se você sabe o que está sentindo mas não sabe o que fazer com isso, o app foi feito exatamente pra você.</p>
+        <button class="faq-q" onclick="toggleFaq(this)">¿Y si el material no es lo que esperaba?<span class="faq-arr">▼</span></button>
+        <div class="faq-a">7 días de garantía incondicional. Pides el reembolso, sin preguntas.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">Quanto tempo por dia eu preciso dedicar?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Depende do dia e da ferramenta. O livro tem capítulos curtos, feitos pra ler em cinco a dez minutos. Os áudios têm em média seis minutos. Os checklists levam menos de dois minutos. Você não precisa de uma tarde livre. Precisa de uma pausa.</p>
+        <button class="faq-q" onclick="toggleFaq(this)">¿Necesito conocimientos previos de la Biblia?<span class="faq-arr">▼</span></button>
+        <div class="faq-a">No. Diseñado para todos: nuevos creyentes, estudiantes, líderes, padres o pastores. Lenguaje claro y accesible.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">As conversas com a Aurora são privadas?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Sim. Só você tem acesso ao que conversa com ela. Nenhuma outra pessoa vê. Nenhuma outra pessoa sabe. Isso foi uma decisão intencional no desenvolvimento do app, porque eu sei que muitas mulheres que precisam disso estão em situações onde privacidade não é detalhe. É condição.</p>
+        <button class="faq-q" onclick="toggleFaq(this)">¿Por qué es tan económico? ¿Es confiable?<span class="faq-arr">▼</span></button>
+        <div class="faq-a">El objetivo es que cualquier creyente pueda acceder. El precio bajo no refleja calidad baja. Más de 4.000 personas ya lo tienen.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">O acesso expira?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Não. O pagamento é único e o acesso é vitalício. Você paga uma vez e o ClaraMente fica disponível pra você pelo tempo que precisar. Sem mensalidade. Sem renovação.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">O ClaraMente substitui terapia?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Não. O ClaraMente não substitui terapia e não foi feito pra isso. Ele está disponível nos momentos em que a terapia não está — de madrugada, no carro, no banheiro do trabalho — que são justamente os momentos em que você mais precisa de clareza imediata.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">Funciona se meu relacionamento não for romântico?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Sim. O padrão que o ClaraMente trabalha aparece em qualquer tipo de relação. Não importa se é parceiro, mãe, chefe, amiga ou sogra. O mecanismo é o mesmo.</p>
-      </div>
-      <div class="faq-item">
-        <button class="faq-pergunta" onclick="toggleFaq(this)">
-          <span class="faq-pergunta-texto">Como funciona a garantia?</span>
-          <span class="faq-icone">+</span>
-        </button>
-        <p class="faq-resposta">Você tem 7 dias de garantia incondicional. Se dentro desse período você sentir que não era o que precisava, por qualquer motivo, é só me chamar e eu devolvo tudo. Sem perguntas.</p>
+        <button class="faq-q" onclick="toggleFaq(this)">¿Puedo pagar en mi moneda local?<span class="faq-arr">▼</span></button>
+        <div class="faq-a">Sí. Pagas automáticamente en tu moneda local con tarjeta de crédito, débito o billetera digital.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ CTA FINAL (reescrito com decisão binária mais forte) ══ -->
-<section class="secao-cta-final">
+
+<!-- ══════════════════════════════
+     12. FINAL CTA
+     ══════════════════════════════ -->
+<section class="section-final">
   <div class="container">
-    <p class="cta-final-pre">Você chegou até aqui por algum motivo.</p>
-    <h2 class="cta-final-titulo">Você ainda lembra da mulher que queria ser.</h2>
-    <div class="divisor"></div>
-    <p class="cta-final-texto">Ela não foi embora. Ela só foi sendo adiada, conversa por conversa, decisão por decisão.</p>
-    <p class="cta-final-texto">Hoje você tem duas opções.</p>
-    <p class="cta-final-texto">Continuar reagindo do jeito que sempre reagiu. Cedendo sem perceber. Adiando sem entender por quê.</p>
-    <p class="cta-final-texto">Ou testar 7 dias. Ver o que muda. E se não mudar nada, pedir tudo de volta.</p>
-    <p class="cta-final-pergunta">Você consegue se imaginar daqui a um ano, vivendo exatamente igual hoje?</p>
-    <a href="SEU_LINK_HOTMART_AQUI" class="btn-principal">QUERO MINHA CLAREZA AGORA</a>
-    <p class="micro-copy">🔒 Pagamento único de R$97 · Acesso imediato · Garantia de 7 dias</p>
-    <p class="cta-final-fechamento">Se não mudar nada em 7 dias, eu devolvo tudo. Sem perguntas.</p>
+    <h2>
+      El hilo siempre estuvo ahí.<br>
+      <em>Solo faltaba el mapa.</em>
+    </h2>
+
+    <p class="sub">
+      +4.000 creyentes ya lo encontraron.<br>
+      $6,90 USD. Un pago. Acceso de por vida.
+    </p>
+
+    <a href="https://almadigital.pro/" class="btn" style="max-width:400px;">Quiero El Mapa Sagrado ahora</a>
+    <p class="urgency" style="font-size:12px;color:var(--gold);margin-top:10px;">Precio especial de lanzamiento · Por tiempo limitado</p>
+    <p class="final-foot">📧 Entrega inmediata · 7 días de garantía · Cualquier dispositivo</p>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="footer-logo">ClaraMente</div>
-  <p class="footer-texto">© 2025 ClaraMente. Todos os direitos reservados.<br>Este produto não substitui acompanhamento profissional de saúde mental.</p>
-  <div class="footer-links">
-    <a href="#">Política de Privacidade</a>
-    <a href="#">Termos de Uso</a>
-    <a href="#">Suporte</a>
-  </div>
+
+<footer>
+  <p>
+    © 2025 El Mapa Sagrado · Todos los derechos reservados<br>
+    <a href="#">Política de Privacidad</a> · <a href="#">Términos de Uso</a> · <a href="#">Soporte</a>
+  </p>
+  <p style="margin-top:7px;">Este sitio no está afiliado con Facebook, Instagram ni Meta Platforms.</p>
 </footer>
 
 <script>
-  // ─── CONTADOR REGRESSIVO 48H ───
-  function getContador() {
-    const key = 'cm_deadline';
-    let deadline = localStorage.getItem(key);
-    if (!deadline) {
-      deadline = Date.now() + (48 * 60 * 60 * 1000);
-      localStorage.setItem(key, deadline);
-    }
-    return parseInt(deadline);
-  }
-
-  function atualizarContador() {
-    const deadline = getContador();
-    const agora = Date.now();
-    let diff = deadline - agora;
-
-    if (diff <= 0) {
-      const novo = Date.now() + (48 * 60 * 60 * 1000);
-      localStorage.setItem('cm_deadline', novo);
-      diff = 48 * 60 * 60 * 1000;
-    }
-
-    const horas = Math.floor(diff / (1000 * 60 * 60));
-    const min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seg = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('cnt-horas').textContent = String(horas).padStart(2, '0');
-    document.getElementById('cnt-min').textContent = String(min).padStart(2, '0');
-    document.getElementById('cnt-seg').textContent = String(seg).padStart(2, '0');
-  }
-
-  atualizarContador();
-  setInterval(atualizarContador, 1000);
-
-  // ─── FAQ ───
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const isAberto = item.classList.contains('aberto');
-    document.querySelectorAll('.faq-item.aberto').forEach(el => el.classList.remove('aberto'));
-    if (!isAberto) item.classList.add('aberto');
-  }
-
-  // ─── ANIMAÇÕES SCROLL ───
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.card-pilar, .card-bonus, .dia-item, .card-depoimento, .card-para-quem, .card-agitacao, .card-resultado').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const open = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(b => b.classList.remove('open'));
+  if (!open) { ans.classList.add('open'); btn.classList.add('open'); }
+}
 </script>
 
 </body>
